@@ -1,12 +1,12 @@
 package com.cow.cow_mvc_practice.member.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
-	//
-	// void save(Member member);
-	//
-	// Member findById(Long memberId);
+public interface MemberRepository {
+
+	void save(Member member);
+
+	Optional<Member> findById(Long memberId);
 }
