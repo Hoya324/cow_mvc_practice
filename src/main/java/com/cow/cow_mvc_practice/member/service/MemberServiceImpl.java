@@ -10,22 +10,20 @@ import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 import com.cow.cow_mvc_practice.member.repository.MemberRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 // @Transactional
 public class MemberServiceImpl implements MemberService {
 
-	// private final MemberJPARepository memberRepository;
-	private final MemberRepository memberRepository;
-
-	@Autowired
-	public MemberServiceImpl(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
+	private final MemberJPARepository memberRepository;
+	// private final MemberRepository memberRepository;
 
 	/* 기본 */
 	@Override
 	public void join(MemberRequest memberRequest) {
-		Member member = new Member(memberRequest.getId(), memberRequest.getName());
+		Member member = Member.from(memberRequest.getId(), memberRequest.getName());
 		memberRepository.save(member);
 	}
 
