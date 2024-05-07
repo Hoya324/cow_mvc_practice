@@ -1,5 +1,8 @@
 # COW MVC PRACTICE 초기 코드
 
+## 환경
+### [spring initializr link](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.5&packaging=jar&jvmVersion=17&groupId=com.cow&artifactId=cow_mvc_practice&name=cow_mvc_practice&description=cow_mvc_practice&packageName=com.cow.cow_mvc_practice&dependencies=web,data-jpa,lombok,docker-compose)
+
 ## docker 실행 방법
 
 1. build 후 터미널에 `docker compose up` 을 입력한다.
@@ -30,3 +33,11 @@
 3. 사용자는 모든 게시글들을 조회할 수 있습니다. 게시글의 id, 게시글의 제목, 작성자의 이름, 게시글의 댓글 개수를 리스트로 반환합니다.
 4. 사용자는 게시글을 삭제할 수 있습니다. 이때 cascade 옵션을 사용해 해당 게시글의 댓글도 같이 삭제합니다. cascade 옵션에 대해 학습하기 위해서 다음과 같은 링크를 참고해주세요. 또한 cascade 옵션이 있을 경우와 cascade 있을 경우 쿼리를 비교해서 캡쳐해주세요.
    [https://velog.io/@max9106/JPA엔티티-상태-Cascade](https://velog.io/@max9106/JPA%EC%97%94%ED%8B%B0%ED%8B%B0-%EC%83%81%ED%83%9C-Cascade)
+
+---
+
+분명 척척해내시는 분들도 계실거고, 조금은 버거우신 분들도 존재하리라 생각이 듭니다! 
+모든 것을 처음부터 잘하는 사람은 없으니 저희 멘토들에게 많은 질문해주시고 욕심이 있으신분들은 추가적인 공부를 통해 더욱더 성장하시길 바랍니다!!
+
+모든 요구사항을 충족시키시기 어렵다는 생각이 드신다면 member, post만이라고 확실하게 구현해보시고 이해하시길 추천드려요! 
+또한 해당 과제에서는 간단한 mvc 구현이 목적이기에 JPA에 대한 설명이 많이 부족합니다. 너무 JPA에 대해 많은 시간을 쏟지 않으셔도 된다는 말씀드립니다.
