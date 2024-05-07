@@ -2,6 +2,7 @@ package com.cow.cow_mvc_practice.member.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cow.cow_mvc_practice.member.controller.dto.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.MemberResponse;
@@ -10,6 +11,7 @@ import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 import com.cow.cow_mvc_practice.member.repository.MemberRepository;
 
 @Service
+// @Transactional
 public class MemberServiceImpl implements MemberService {
 
 	// private final MemberJPARepository memberRepository;
@@ -27,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.save(member);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public Member findOne(Long memberId) {
 		return memberRepository.findById(memberId)
@@ -41,6 +44,7 @@ public class MemberServiceImpl implements MemberService {
 	// 	return MemberResponse.of(member);
 	// }
 
+	// @Transactional(readOnly = true)
 	// @Override
 	// public MemberResponse findOne(Long memberId) {
 	// 	Member member = memberRepository.findById(memberId)
