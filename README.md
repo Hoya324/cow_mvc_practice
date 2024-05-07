@@ -4,9 +4,12 @@
 ### [spring initializr link](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.5&packaging=jar&jvmVersion=17&groupId=com.cow&artifactId=cow_mvc_practice&name=cow_mvc_practice&description=cow_mvc_practice&packageName=com.cow.cow_mvc_practice&dependencies=web,data-jpa,lombok,docker-compose)
 
 ## docker 실행 방법
-1. 프로젝트 build 후 `docker build` 를 해당 프로젝트 경로에 입력한다.
+1. 프로젝트 build 후, 터미널에 `docker build` 를 해당 프로젝트 경로로 입력한다. 
+   - ex) ~/Desktop/mju/cow/cow_mvc_practice docker build
 2. 시작 시에는 `docker compose up` 을 입력한다.
+    - ex) ~/Desktop/mju/cow/cow_mvc_practice docker compose up
 3. 종료 시에는 `docker compose down` 을 입력한다.
+    - ex) ~/Desktop/mju/cow/cow_mvc_practice docker compose down
 
 ## 구현 미션
 
