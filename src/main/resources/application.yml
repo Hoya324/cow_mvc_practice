@@ -2,15 +2,20 @@ spring:
   application:
     name: cow_mvc_practice
   jpa:
+    open-in-view: true
     hibernate:
       ddl-auto: create
-    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
 
   docker:
     compose:
       file: compose.yaml
       enabled: true
-      lifecycle-management: START_ONLY
+      lifecycle-management: none
       start:
         command: up
       stop:

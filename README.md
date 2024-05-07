@@ -3,7 +3,6 @@
 ## docker 실행 방법
 
 1. build 후 터미널에 `docker compose up` 을 입력한다.
-    - 또는 application을 실행시킨다.
 
 2. 종료 시에는 `docker compose down` 을 입력한다.
 
