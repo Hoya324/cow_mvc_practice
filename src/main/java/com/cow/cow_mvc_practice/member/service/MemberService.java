@@ -6,12 +6,12 @@ import com.cow.cow_mvc_practice.member.entity.Member;
 
 public interface MemberService {
 
-	// void join(MemberRequest memberRequest);
-	MemberResponse join(MemberRequest memberRequest);
+	void join(MemberRequest memberRequest);
+	// MemberResponse join(MemberRequest memberRequest);
 
-	// Member findOne(Long memberId);
+	Member findOne(Long memberId);
 
-	MemberResponse findOne(Long memberId);
+	// MemberResponse findOne(Long memberId);
 
 	// Member updateMember();
 }

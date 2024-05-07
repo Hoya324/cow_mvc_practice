@@ -18,29 +18,29 @@ public class MemberServiceImpl implements MemberService {
 		this.memberRepository = memberRepository;
 	}
 
-	// @Override
-	// public void join(MemberRequest memberRequest) {
-	// 	Member member = new Member(memberRequest.getId(), memberRequest.getName());
-	// 	memberRepository.save(member);
-	// }
-
 	@Override
-	public MemberResponse join(MemberRequest memberRequest) {
+	public void join(MemberRequest memberRequest) {
 		Member member = new Member(memberRequest.getId(), memberRequest.getName());
 		memberRepository.save(member);
-		return MemberResponse.of(member);
 	}
 
 	// @Override
-	// public Member findOne(Long memberId) {
-	// 	return memberRepository.findById(memberId)
-	// 		.orElseThrow(() -> new IllegalArgumentException("[Error] 사용자를 찾을 수 없습니다."));
+	// public MemberResponse join(MemberRequest memberRequest) {
+	// 	Member member = new Member(memberRequest.getId(), memberRequest.getName());
+	// 	memberRepository.save(member);
+	// 	return MemberResponse.of(member);
 	// }
 
 	@Override
-	public MemberResponse findOne(Long memberId) {
-		Member member = memberRepository.findById(memberId)
+	public Member findOne(Long memberId) {
+		return memberRepository.findById(memberId)
 			.orElseThrow(() -> new IllegalArgumentException("[Error] 사용자를 찾을 수 없습니다."));
-		return MemberResponse.of(member);
 	}
+
+	// @Override
+	// public MemberResponse findOne(Long memberId) {
+	// 	Member member = memberRepository.findById(memberId)
+	// 		.orElseThrow(() -> new IllegalArgumentException("[Error] 사용자를 찾을 수 없습니다."));
+	// 	return MemberResponse.of(member);
+	// }
 }

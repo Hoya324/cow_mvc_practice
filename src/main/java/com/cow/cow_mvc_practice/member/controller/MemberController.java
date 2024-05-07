@@ -39,9 +39,9 @@ public class MemberController {
 		return "member 아이디: " + member.getId() + ", member 이름: " + member.getName();
 	}
 
-	@GetMapping("/{memberId}")
-	public MemberResponse findMember(@PathVariable final Long memberId) {
-		Member member = memberService.findOne(memberId);
-	}
+	// @GetMapping("/{memberId}")
+	// public MemberResponse findMember(@PathVariable final Long memberId) {
+	// 	Member member = memberService.findOne(memberId);
+	// }
 }
 
