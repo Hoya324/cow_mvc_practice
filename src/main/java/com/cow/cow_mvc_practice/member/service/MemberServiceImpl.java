@@ -61,5 +61,4 @@ public class MemberServiceImpl implements MemberService {
 			.map(MemberResponse::of)
 			.collect(Collectors.toList());
 	}
-
 }

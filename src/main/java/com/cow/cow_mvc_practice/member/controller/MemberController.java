@@ -37,11 +37,6 @@ public class MemberController {
 	// 	return "member 아이디: " + member.getId() + ", member 이름: " + member.getName();
 	// }
 	//
-	// @GetMapping()
-	// public String findMemberQuery(@RequestParam final Long memberId) {
-	// 	Member member = memberService.findOne(memberId);
-	// 	return "member 아이디: " + member.getId() + ", member 이름: " + member.getName();
-	// }
 
 	/* MemberResponse dto 적용 */
 	@PostMapping("/new")
@@ -51,6 +46,11 @@ public class MemberController {
 
 	@GetMapping("/{memberId}")
 	public MemberResponse findMember(@PathVariable final Long memberId) {
+		return memberService.findOne(memberId);
+	}
+
+	@GetMapping()
+	public MemberResponse findMemberQuery(@RequestParam final Long memberId) {
 		return memberService.findOne(memberId);
 	}
 
