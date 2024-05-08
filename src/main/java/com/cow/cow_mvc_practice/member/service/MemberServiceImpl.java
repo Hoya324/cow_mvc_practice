@@ -49,4 +49,14 @@ public class MemberServiceImpl implements MemberService {
 	// 		.orElseThrow(() -> new IllegalArgumentException("[Error] 사용자를 찾을 수 없습니다."));
 	// 	return MemberResponse.of(member);
 	// }
+
+	@Override
+	public List<MemberResponse> findAll() {
+		List<Member> members = memberRepository.findAll()
+			.orElseThrow(() -> new IllegalArgumentException("[Error] 전체 사용자를 찾는 중 오류가 발생했습니다."));
+		return members.stream()
+			.map(MemberResponse::of)
+			.collect(Collectors.toList());
+	}
+
 }

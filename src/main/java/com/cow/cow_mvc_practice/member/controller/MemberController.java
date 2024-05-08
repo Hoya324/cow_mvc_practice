@@ -1,6 +1,7 @@
 package com.cow.cow_mvc_practice.member.controller;
 
-import org.springframework.data.jpa.repository.Query;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cow.cow_mvc_practice.member.controller.dto.MemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -51,5 +53,10 @@ public class MemberController {
 	// public MemberResponse findMember(@PathVariable final Long memberId) {
 	// 	Member member = memberService.findOne(memberId);
 	// }
+
+	@GetMapping("all")
+	public List<MemberResponse> findMembers() {
+		return memberService.findAll();
+	}
 }
 

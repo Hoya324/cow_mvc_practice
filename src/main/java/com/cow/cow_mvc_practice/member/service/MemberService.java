@@ -1,7 +1,10 @@
 package com.cow.cow_mvc_practice.member.service;
 
-import com.cow.cow_mvc_practice.member.controller.dto.MemberRequest;
-import com.cow.cow_mvc_practice.member.controller.dto.MemberResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 
 public interface MemberService {
@@ -10,8 +13,10 @@ public interface MemberService {
 	void join(MemberRequest memberRequest);
 	Member findOne(Long memberId);
 
+
 	/* MemberResponse dto 적용 */
 	// MemberResponse findOne(Long memberId);
 	// MemberResponse join(MemberRequest memberRequest);
+	List<MemberResponse> findAll();
 }
 
