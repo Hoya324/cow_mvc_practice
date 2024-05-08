@@ -1,24 +1,28 @@
 package com.cow.cow_mvc_practice.member.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cow.cow_mvc_practice.member.controller.dto.MemberRequest;
-import com.cow.cow_mvc_practice.member.controller.dto.MemberResponse;
+import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 import com.cow.cow_mvc_practice.member.repository.MemberRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-// @Transactional
+@Transactional
 public class MemberServiceImpl implements MemberService {
 
-	private final MemberJPARepository memberRepository;
-	// private final MemberRepository memberRepository;
+	// private final MemberJPARepository memberRepository;
+	private final MemberRepository memberRepository;
 
 	/* 기본 */
 	@Override
@@ -31,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member findOne(Long memberId) {
 		return memberRepository.findById(memberId)
-			.orElseThrow(() -> new IllegalArgumentException("[Error] 사용자를 찾을 수 없습니다."));
+			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
 	}
 
 	/* MemberResponse dto 적용 */
@@ -46,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 	// @Override
 	// public MemberResponse findOne(Long memberId) {
 	// 	Member member = memberRepository.findById(memberId)
-	// 		.orElseThrow(() -> new IllegalArgumentException("[Error] 사용자를 찾을 수 없습니다."));
+	// 		.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
 	// 	return MemberResponse.of(member);
 	// }
 

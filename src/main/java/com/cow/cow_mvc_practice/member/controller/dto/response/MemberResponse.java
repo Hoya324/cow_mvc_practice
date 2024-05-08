@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice.member.controller.dto;
+package com.cow.cow_mvc_practice.member.controller.dto.response;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
 
@@ -7,8 +7,8 @@ import lombok.Getter;
 
 @Getter
 public class MemberResponse {
-	private Long id;
-	private String name;
+	private final Long id;
+	private final String name;
 
 	@Builder
 	private MemberResponse(final Long id, final String name) {
