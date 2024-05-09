@@ -13,7 +13,7 @@ spring:
   datasource:
     url: jdbc:tc:mysql:8.0.36://cow/mydatabase?
     username: myuser
-    password: verysecret
+    password: secret
     driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
 
   docker:
