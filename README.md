@@ -6,8 +6,8 @@
     - 미션 구현
     - 미션 구현 과정에서 학습한 내용, 고민했던 점 등을 기록한 본인 깃헙 아이디 이름 md파일 작성(ex. Hoya324.md)
     - 구현 완료 한 코드는 해당 리포지토리에 pr 작성
-        - pr 타이틀: [#주차]객체지향 코드 연습(깃헙 아이디)
-            - ex. [1주차] 객체지향 코드 연습(Hoya324)
+        - pr 타이틀: [#주차] cow mvc practice(깃헙 아이디)
+            - ex. [1주차] cow mvc practice(Hoya324)
     - 미션 구현에서 기록한 md파일은 [COW-Spring-3](https://github.com/COW-edu/COW-Spring-3/tree/main/week08) 리포지토리에 pr 작성
     - 미션 구현 pr 링크 첨부
 
