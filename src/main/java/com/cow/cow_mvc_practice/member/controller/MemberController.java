@@ -1,5 +1,6 @@
 package com.cow.cow_mvc_practice.member.controller;
 
+import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,21 +25,7 @@ public class MemberController {
 
 	private final MemberService memberService;
 
-	/* 기본 */
-	// @PostMapping("/new")
-	// public String create(@RequestBody final MemberRequest memberRequest) {
-	// 	memberService.join(memberRequest);
-	// 	return "회원저장 성공!";
-	// }
-	//
-	// @GetMapping("/{memberId}")
-	// public String findMember(@PathVariable final Long memberId) {
-	// 	Member member = memberService.findOne(memberId);
-	// 	return "member 아이디: " + member.getId() + ", member 이름: " + member.getName();
-	// }
-	//
 
-	/* MemberResponse dto 적용 */
 	@PostMapping("/new")
 	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
 		return memberService.join(memberRequest);
@@ -57,6 +44,11 @@ public class MemberController {
 	@GetMapping("all")
 	public List<MemberResponse> findMembers() {
 		return memberService.findAll();
+	}
+
+	@PostMapping("{memberId}")
+	public MemberResponse editMember(@PathVariable final Long memberId, final UpdateMemberRequest updateMemberRequest) {
+		return memberService.update(memberId, updateMemberRequest);
 	}
 }
 

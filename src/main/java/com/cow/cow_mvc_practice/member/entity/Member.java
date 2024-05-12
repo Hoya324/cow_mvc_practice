@@ -39,16 +39,20 @@ public class Member {
 		this.name = name;
 	}
 
-	public static Member of(String name) {
+	public static Member from(String name) {
 		return Member.builder()
 			.name(name)
 			.build();
 	}
 
-	public static Member from(Long id, String name) {
+	public static Member of(Long id, String name) {
 		return Member.builder()
 			.id(id)
 			.name(name)
 			.build();
+	}
+
+	public void updateName(String name) {
+		this.name = name;
 	}
 }

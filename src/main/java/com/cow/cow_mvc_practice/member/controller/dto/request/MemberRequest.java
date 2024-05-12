@@ -9,8 +9,8 @@ public class MemberRequest {
 	 String name;
 
 	 public Member toEntity() {
-		 return Member.builder()
-			 .name(name)
-			 .build();
-	 }
+		return Member.builder()
+				.name(name)
+				.build();
+	}
 }

@@ -25,7 +25,7 @@ public class NoArgsConstructorTest {
 
 	@BeforeEach
 	void makeEntity() {
-		Member member = Member.of("나바보");
+		Member member = Member.from("경호는 진짜 바보");
 
 		em.persist(member);
 
