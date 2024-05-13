@@ -13,7 +13,7 @@ public class CreatePostResponse {
   private final int commentSize;
 
   @Builder
-  public CreatePostResponse(Long id, String title, String content, String memberName, int commentSize) {
+  private CreatePostResponse(Long id, String title, String content, String memberName, int commentSize) {
     this.id = id;
     this.title = title;
     this.content = content;

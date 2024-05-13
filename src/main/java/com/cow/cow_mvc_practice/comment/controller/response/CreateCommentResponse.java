@@ -12,7 +12,7 @@ public class CreateCommentResponse {
   private final String content;
 
   @Builder
-  public CreateCommentResponse(Long id, String content) {
+  private CreateCommentResponse(Long id, String content) {
     this.id = id;
     this.content = content;
   }
