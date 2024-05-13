@@ -1,7 +1,7 @@
 package com.cow.cow_mvc_practice.post.controller;
 
-import com.cow.cow_mvc_practice.post.controller.dto.request.CreatePostRequest;
-import com.cow.cow_mvc_practice.post.controller.dto.response.CreatePostResponse;
+import com.cow.cow_mvc_practice.post.dto.request.CreatePostRequest;
+import com.cow.cow_mvc_practice.post.dto.response.CreatePostResponse;
 import com.cow.cow_mvc_practice.post.service.PostService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

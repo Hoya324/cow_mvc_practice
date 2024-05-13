@@ -1,8 +1,6 @@
-package com.cow.cow_mvc_practice.comment.controller.response;
+package com.cow.cow_mvc_practice.comment.dto.response;
 
 import com.cow.cow_mvc_practice.comment.entity.Comment;
-import com.cow.cow_mvc_practice.member.controller.dto.response.CreateMemberResponse;
-import com.cow.cow_mvc_practice.member.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 

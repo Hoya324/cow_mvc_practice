@@ -1,7 +1,7 @@
 package com.cow.cow_mvc_practice.member.controller;
 
-import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
-import com.cow.cow_mvc_practice.member.controller.dto.response.CreateMemberResponse;
+import com.cow.cow_mvc_practice.member.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.response.CreateMemberResponse;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cow.cow_mvc_practice.member.controller.dto.request.CreateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
 import com.cow.cow_mvc_practice.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;

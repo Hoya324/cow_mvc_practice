@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice.post.controller.dto.response;
+package com.cow.cow_mvc_practice.post.dto.response;
 
 import com.cow.cow_mvc_practice.post.entity.Post;
 import lombok.Builder;

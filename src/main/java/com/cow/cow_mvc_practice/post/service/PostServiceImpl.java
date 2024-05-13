@@ -1,11 +1,9 @@
 package com.cow.cow_mvc_practice.post.service;
 
-import com.cow.cow_mvc_practice.member.controller.dto.response.CreateMemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
-import com.cow.cow_mvc_practice.member.service.MemberService;
-import com.cow.cow_mvc_practice.post.controller.dto.request.CreatePostRequest;
-import com.cow.cow_mvc_practice.post.controller.dto.response.CreatePostResponse;
+import com.cow.cow_mvc_practice.post.dto.request.CreatePostRequest;
+import com.cow.cow_mvc_practice.post.dto.response.CreatePostResponse;
 import com.cow.cow_mvc_practice.post.entity.Post;
 import com.cow.cow_mvc_practice.post.repository.PostJPARepository;
 import jakarta.persistence.EntityNotFoundException;
