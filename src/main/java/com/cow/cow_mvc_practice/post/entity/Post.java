@@ -3,6 +3,7 @@ package com.cow.cow_mvc_practice.post.entity;
 import com.cow.cow_mvc_practice.comment.entity.Comment;
 import com.cow.cow_mvc_practice.member.entity.Member;
 
+import com.cow.cow_mvc_practice.utils.BaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,7 +26,7 @@ import org.springframework.data.annotation.CreatedDate;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 생성자를 통해서 값 변경 목적으로 접근하는 메시지들 차단
 @Entity
-public class Post {
+public class Post extends BaseEntity {
 
 	@Id
 	@Column(name = "post_id")
@@ -43,9 +44,6 @@ public class Post {
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 
-	@CreatedDate//엔티티가 생성될 때 생성 시간 저장
-	@Column(name="created_at")
-	private LocalDateTime createdAt;
 
 	@Builder
 	private Post( final Long id, final String title, final String content, final Member member, final List<Comment> comments, final LocalDateTime createdAt) {
@@ -54,7 +52,7 @@ public class Post {
 		this.content = content;
 		this.member = member;
 		this.comments = comments;
-		this.createdAt = createdAt;
+		super.createdAt = createdAt;
 	}
 
 	public static Post of(String title, String content, Member member) {
