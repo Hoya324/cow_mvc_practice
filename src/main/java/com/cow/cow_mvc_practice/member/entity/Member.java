@@ -1,6 +1,8 @@
 package com.cow.cow_mvc_practice.member.entity;
 
+import com.cow.cow_mvc_practice.comment.entity.Comment;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.cow.cow_mvc_practice.post.entity.Post;
@@ -55,4 +57,8 @@ public class Member {
 	public void updateName(String name) {
 		this.name = name;
 	}
+
+	@OneToMany(mappedBy = "member")
+	private Collection<Comment> comment;
+
 }
