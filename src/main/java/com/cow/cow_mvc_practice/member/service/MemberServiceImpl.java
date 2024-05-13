@@ -38,18 +38,18 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional(readOnly = true)
 	@Override
 	public CreateMemberResponse findOne(Long memberId) {
-		Member member = findMemberById(memberId);
+		Member member = findMember(memberId);
 		return CreateMemberResponse.from(member);
 	}
 
 	@Override
 	public CreateMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest) {
-		Member member = findMemberById(memberId);
+		Member member = findMember(memberId);
 		member.updateName(updateMemberRequest.getName());
 		return CreateMemberResponse.from(member);
 	}
 
-	private Member findMemberById(Long memberId) {
+	private Member findMember(Long memberId) {
     return memberRepository.findById(memberId)
 				.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
 	}

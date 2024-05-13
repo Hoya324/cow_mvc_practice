@@ -23,8 +23,8 @@ public class CommentServiceImpl implements CommentService{
 
   @Override
   public CreateCommentResponse createComment(CreateCommentRequest createCommentRequest) {
-    Member member = findMemberById(createCommentRequest.getMemberId());
-    Post post = findPostById(createCommentRequest.getPostId());
+    Member member = findMember(createCommentRequest.getMemberId());
+    Post post = findPost(createCommentRequest.getPostId());
 
     Comment comment = Comment.of(createCommentRequest.getContent(), post, member);
     commentRepository.save(comment);
@@ -32,12 +32,12 @@ public class CommentServiceImpl implements CommentService{
     return CreateCommentResponse.from(comment);
   }
 
-  private Post findPostById(Long postId) {
+  private Post findPost(Long postId) {
     return postRepository.findById(postId)
         .orElseThrow(() -> new EntityNotFoundException("[Error] 게시글를 찾을 수 없습니다."));
   }
 
-  private Member findMemberById(Long memberId) {
+  private Member findMember(Long memberId) {
     return memberRepository.findById(memberId)
         .orElseThrow(() -> new EntityNotFoundException("[Error] 회원를 찾을 수 없습니다."));
   }

@@ -25,7 +25,7 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public CreatePostResponse createPost(CreatePostRequest createPostRequest) {
-    Member member = findMemberById(createPostRequest.getMemberId());
+    Member member = findMember(createPostRequest.getMemberId());
     Post post = Post.of(createPostRequest.getTitle(), createPostRequest.getContent(), member);
     postRepository.save(post);
     return CreatePostResponse.from(post);
@@ -34,7 +34,7 @@ public class PostServiceImpl implements PostService {
   @Transactional(readOnly = true)
   @Override
   public CreatePostResponse findOnePost(Long postId) {
-    Post post = findPostById(postId);
+    Post post = findPost(postId);
     return CreatePostResponse.from(post);
   }
 
@@ -48,16 +48,16 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public void delete(Long postId) {
-    Post post = findPostById(postId);
+    Post post = findPost(postId);
     postRepository.delete(post);
   }
 
-  private Post findPostById(Long postId) {
+  private Post findPost(Long postId) {
     return postRepository.findById(postId)
         .orElseThrow(() -> new EntityNotFoundException("[Error] 게시글를 찾을 수 없습니다."));
   }
 
-  private Member findMemberById(Long memberId) {
+  private Member findMember(Long memberId) {
     return memberRepository.findById(memberId)
         .orElseThrow(() -> new EntityNotFoundException("[Error] 회원를 찾을 수 없습니다."));
   }
