@@ -24,11 +24,11 @@ public class NoArgsConstructorTest {
 
 	@BeforeEach
 	void makeEntity() {
-		Member member = Member.from("나바보");
+		Member member = Member.from("경호는 진짜 바보");
 
 		em.persist(member);
 
-		Post post = Post.from("글 제목입니다.", "글 내용입니다.", member);
+		Post post = Post.of("글 제목입니다.", "글 내용입니다.", member);
 		em.persist(post);
 	}
 
