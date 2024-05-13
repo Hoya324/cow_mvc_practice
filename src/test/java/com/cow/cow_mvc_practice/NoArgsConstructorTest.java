@@ -28,7 +28,7 @@ public class NoArgsConstructorTest {
 
 		em.persist(member);
 
-		Post post = Post.from("글 제목입니다.", "글 내용입니다.", member);
+		Post post = Post.of("글 제목입니다.", "글 내용입니다.", member);
 		em.persist(post);
 	}
 
