@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class CreatePostRequest {
-   Long memberId;
-   String title;
-   String content;
+   private Long memberId;
+   private String title;
+   private String content;
 
-  public Post toEntity() {
+  public static Post toEntity(String title, String content) {
     return Post.builder()
         .title(title)
         .content(content)

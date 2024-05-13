@@ -8,7 +8,7 @@ public class UpdateMemberRequest {
 
 	private String name;
 
-	public Member toEntity() {
+	public static Member toEntity(String name) {
 		return Member.builder()
 				.name(name)
 				.build();
