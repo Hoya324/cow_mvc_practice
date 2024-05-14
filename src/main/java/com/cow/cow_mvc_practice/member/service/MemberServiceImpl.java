@@ -13,9 +13,9 @@ import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
-@Transactional
+@Service // Service Class에서 쓰인다. // 비즈니스 로직을 수행하는 Class라는 것을 나타내는 용도이다.
+@RequiredArgsConstructor ////final이 붙거나 @NotNull 이 붙은 필드의 생성자를 자동 생성
+@Transactional //method 내부에서 일어나는 데이터베이스 로직이 전부 성공하게되거나 데이터베이스 접근중 하나라도 실패하면 다시 롤백할 수 있게 해주는 Annotation
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberJPARepository memberRepository;
@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		return MemberResponse.from(member);
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) // ReadOnly -> 읽기 전용
 	@Override
 	public MemberResponse findOne(Long memberId) {
 		Member member = memberRepository.findById(memberId)
@@ -57,5 +57,21 @@ public class MemberServiceImpl implements MemberService {
 		return members.stream()
 			.map(MemberResponse::from)
 			.collect(Collectors.toList());
+	}
+
+	@Override
+	public MemberResponse updateMemberInfo(Long memberId, String name) {
+		Member member = memberRepository.findById(memberId)
+				.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
+
+		member.setName(name); // 이름을 업데이트합니다.
+		memberRepository.save(member); // 변경된 정보를 저장합니다.
+
+		return MemberResponse.from(member); // 업데이트된 회원 정보를 반환합니다.
+	}
+
+	@Override
+	public void deleteMember(Long memberId) {
+		memberRepository.deleteById(memberId);
 	}
 }
