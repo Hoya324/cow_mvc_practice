@@ -2,6 +2,7 @@ package com.cow.cow_mvc_practice.member.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,11 @@ public class MemberController {
 	@GetMapping("/{memberId}")
 	public MemberResponse findMember(@PathVariable final Long memberId) {
 		return memberService.findOne(memberId);
+	}
+
+	@DeleteMapping("/{memberId}/delete")
+	public String delete(@PathVariable final Long memberId) {
+		return memberService.delete(memberId);
 	}
 
 	@GetMapping()

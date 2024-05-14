@@ -59,4 +59,10 @@ public class MemberServiceImpl implements MemberService {
 			.map(MemberResponse::from)
 			.collect(Collectors.toList());
 	}
+
+	@Override
+	public String delete(Long memberId) {
+		memberRepository.deleteById(memberId);
+		return "삭제에 성공하였습니다.";
+	}
 }

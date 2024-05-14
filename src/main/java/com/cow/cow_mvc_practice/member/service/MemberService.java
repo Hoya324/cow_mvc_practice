@@ -11,10 +11,9 @@ public interface MemberService {
 	// void join(MemberRequest memberRequest);
 	// Member findOne(Long memberId);
 
-
 	/* MemberResponse dto 적용 */
 	MemberResponse findOne(Long memberId);
 	MemberResponse join(MemberRequest memberRequest);
 	List<MemberResponse> findAll();
+	String delete(Long memberId);
 }
-

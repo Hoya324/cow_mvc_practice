@@ -20,7 +20,7 @@ public class PostController {
 
   private final PostService postService;
 
-  @PostMapping("/{memberId}/new")
+  @PostMapping("/members/{memberId}/new")
   public PostResponse create(@PathVariable final Long memberId ,@RequestBody final PostRequest postRequest) {
     return postService.join(memberId, postRequest);
   }
