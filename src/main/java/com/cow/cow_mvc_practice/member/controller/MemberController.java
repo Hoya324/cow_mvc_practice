@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
-import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -54,9 +53,8 @@ public class MemberController {
 		return memberService.findOne(memberId);
 	}
 
-	@GetMapping("all")
+	@GetMapping("/all")
 	public List<MemberResponse> findMembers() {
 		return memberService.findAll();
 	}
 }
-

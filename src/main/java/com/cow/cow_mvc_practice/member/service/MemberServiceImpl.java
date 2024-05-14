@@ -1,6 +1,5 @@
 package com.cow.cow_mvc_practice.member.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,6 @@ import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
-import com.cow.cow_mvc_practice.member.repository.MemberRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -41,9 +39,9 @@ public class MemberServiceImpl implements MemberService {
 	/* MemberResponse dto 적용 */
 	@Override
 	public MemberResponse join(MemberRequest memberRequest) {
-		Member member = Member.of(memberRequest.getName());
+		Member member = Member.from(memberRequest.getName());
 		memberRepository.save(member);
-		return MemberResponse.of(member);
+		return MemberResponse.from(member);
 	}
 
 	@Transactional(readOnly = true)
@@ -51,14 +49,14 @@ public class MemberServiceImpl implements MemberService {
 	public MemberResponse findOne(Long memberId) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-		return MemberResponse.of(member);
+		return MemberResponse.from(member);
 	}
 
 	@Override
 	public List<MemberResponse> findAll() {
 		List<Member> members = memberRepository.findAll();
 		return members.stream()
-			.map(MemberResponse::of)
+			.map(MemberResponse::from)
 			.collect(Collectors.toList());
 	}
 }

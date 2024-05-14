@@ -1,7 +1,11 @@
 package com.cow.cow_mvc_practice.post.entity;
 
+import com.cow.cow_mvc_practice.comment.entity.Comment;
 import com.cow.cow_mvc_practice.member.entity.Member;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +14,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,22 +36,38 @@ public class Post {
 
 	private String content;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
+	private LocalDateTime date;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "member_id")
 	private Member member;
 
+	@OneToMany(mappedBy = "post")
+	private final List<Comment> comments = new ArrayList<>();
+
 	@Builder
-	private Post(final String title, final String content, final Member member) {
+	private Post(final String title, final String content, final Member member, final LocalDateTime date) {
 		this.title = title;
 		this.content = content;
 		this.member = member;
+		this.date = date;
 	}
 
-	public static Post from(final String title, final String content, final Member member) {
+	public static Post of(final String title, final String content, final LocalDateTime date) {
+		return Post.builder()
+				.title(title)
+				.content(content)
+				.date(date)
+				.build();
+	}
+
+	public static Post of(final String title, final String content, final Member member, final LocalDateTime date) {
 		return Post.builder()
 			.title(title)
 			.content(content)
 			.member(member)
+			.date(date)
 			.build();
 	}
 }

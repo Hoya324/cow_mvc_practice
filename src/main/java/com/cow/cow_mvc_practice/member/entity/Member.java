@@ -1,5 +1,6 @@
 package com.cow.cow_mvc_practice.member.entity;
 
+import com.cow.cow_mvc_practice.comment.entity.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import com.cow.cow_mvc_practice.post.entity.Post;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,19 +33,22 @@ public class Member {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private final List<Post> posts = new ArrayList<>();
 
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	private final List<Comment> comments = new ArrayList<>();
+
 	@Builder
 	private Member(final Long id, final String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public static Member of(String name) {
+	public static Member from(String name) {
 		return Member.builder()
 			.name(name)
 			.build();
 	}
 
-	public static Member from(Long id, String name) {
+	public static Member of(Long id, String name) {
 		return Member.builder()
 			.id(id)
 			.name(name)
