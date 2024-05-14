@@ -16,7 +16,7 @@ public interface MemberService {
 
 	/* MemberResponse dto 적용 */
 	MemberResponse findOne(Long memberId);
-	MemberResponse join(MemberRequest memberRequest);
+	MemberResponse join(String name);
 	List<MemberResponse> findAll();
 }
 

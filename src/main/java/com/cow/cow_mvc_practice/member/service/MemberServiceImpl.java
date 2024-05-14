@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
@@ -38,8 +37,8 @@ public class MemberServiceImpl implements MemberService {
 
 	/* MemberResponse dto 적용 */
 	@Override
-	public MemberResponse join(MemberRequest memberRequest) {
-		Member member = Member.from(memberRequest.getName());
+	public MemberResponse join(String name) {
+		Member member = Member.from(name);
 		memberRepository.save(member);
 		return MemberResponse.from(member);
 	}

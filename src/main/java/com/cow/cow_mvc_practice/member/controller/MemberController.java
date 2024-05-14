@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
-import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,7 +40,7 @@ public class MemberController {
 	/* MemberResponse dto 적용 */
 	@PostMapping("/new")
 	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
-		return memberService.join(memberRequest);
+		return memberService.join(memberRequest.getName());
 	}
 
 	@GetMapping("/{memberId}")
