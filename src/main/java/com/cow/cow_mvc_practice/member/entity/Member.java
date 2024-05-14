@@ -43,6 +43,9 @@ public class Member {
 			.name(name)
 			.build();
 	}
+	public void changeName(String newName) {
+		this.name = newName;
+	}
 
 	public static Member of(Long id, String name) {
 		return Member.builder()
