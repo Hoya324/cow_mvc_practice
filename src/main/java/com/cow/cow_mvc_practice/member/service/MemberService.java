@@ -1,5 +1,6 @@
 package com.cow.cow_mvc_practice.member.service;
 
+import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
 import java.util.List;
 
 import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
@@ -16,4 +17,5 @@ public interface MemberService {
 	MemberResponse join(MemberRequest memberRequest);
 	List<MemberResponse> findAll();
 	String delete(Long memberId);
+  MemberResponse updateById(Long memberId, UpdateMemberRequest updateMemberRequest);
 }

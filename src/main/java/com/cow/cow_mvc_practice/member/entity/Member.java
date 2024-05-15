@@ -54,4 +54,8 @@ public class Member {
 			.name(name)
 			.build();
 	}
+
+	public void updateMember(String name) {
+		this.name = name;
+	}
 }

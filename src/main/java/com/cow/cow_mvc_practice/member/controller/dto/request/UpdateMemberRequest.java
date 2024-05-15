@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class UpdateMemberRequest {
 
-	final String name;
+	final String name = null;
 }

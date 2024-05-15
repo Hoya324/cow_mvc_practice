@@ -1,6 +1,8 @@
 package com.cow.cow_mvc_practice.member.service;
 
+import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -64,5 +66,15 @@ public class MemberServiceImpl implements MemberService {
 	public String delete(Long memberId) {
 		memberRepository.deleteById(memberId);
 		return "삭제에 성공하였습니다.";
+	}
+
+	@Transactional
+	@Override
+	public MemberResponse updateById(Long memberId, UpdateMemberRequest updateMemberRequest) {
+		Member member = memberRepository.findById(memberId)
+				.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
+		String name = Optional.ofNullable(updateMemberRequest.getName()).orElse(member.getName());
+		member.updateMember(name);
+		return MemberResponse.from(member);
 	}
 }
