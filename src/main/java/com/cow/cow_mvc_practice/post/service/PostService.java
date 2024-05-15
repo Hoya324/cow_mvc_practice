@@ -1,5 +1,6 @@
 package com.cow.cow_mvc_practice.post.service;
 
+import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.post.controller.dto.request.PostRequest;
 import com.cow.cow_mvc_practice.post.controller.dto.response.PostResponse;
 import java.util.List;

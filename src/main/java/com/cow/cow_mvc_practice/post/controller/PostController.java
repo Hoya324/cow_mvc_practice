@@ -31,12 +31,17 @@ public class PostController {
   }
 
   @GetMapping()
-  public PostResponse findPostQuery(@RequestParam final Long postId) {
+  public PostResponse findPostQuery(@RequestParam("id") final Long postId) {
     return postService.findOne(postId);
   }
 
   @GetMapping("all")
   public List<PostResponse> findPosts() {
     return postService.findAll();
+  }
+
+  @PostMapping("/{memberId}/new")
+  public PostResponse create2(@PathVariable final Long memberId, @RequestBody final PostRequest postRequest) {
+    return postService.join(memberId, postRequest);
   }
 }

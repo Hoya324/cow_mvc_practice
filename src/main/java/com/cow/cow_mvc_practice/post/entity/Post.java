@@ -54,14 +54,6 @@ public class Post {
 		this.date = date;
 	}
 
-	public static Post of(final String title, final String content, final LocalDateTime date) {
-		return Post.builder()
-				.title(title)
-				.content(content)
-				.date(date)
-				.build();
-	}
-
 	public static Post of(final String title, final String content, final Member member, final LocalDateTime date) {
 		return Post.builder()
 			.title(title)

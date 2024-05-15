@@ -29,4 +29,8 @@ public class MemberResponse {
 			.posts(posts)
 			.build();
 	}
+
+	public static Member toEntity(final MemberResponse memberResponse) {
+		return Member.of(memberResponse.getId(), memberResponse.getName());
+	}
 }

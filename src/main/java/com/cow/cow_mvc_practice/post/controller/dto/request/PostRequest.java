@@ -1,6 +1,5 @@
 package com.cow.cow_mvc_practice.post.controller.dto.request;
 
-import com.cow.cow_mvc_practice.post.entity.Post;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,9 +26,5 @@ public class PostRequest {
     this.title = title;
     this.content = content;
     this.date = date;
-  }
-
-  public static Post toEntity(String title, String content, LocalDateTime date) {
-    return Post.of(title, content, date);
   }
 }
