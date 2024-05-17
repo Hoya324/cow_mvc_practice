@@ -7,6 +7,7 @@ import com.cow.cow_mvc_practice.post.controller.dto.response.PostResponse;
 import com.cow.cow_mvc_practice.post.entity.Post;
 import com.cow.cow_mvc_practice.post.repository.PostJPARepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class PostServiceImpl implements PostService{
   public PostResponse join(Long memberId, PostRequest postRequest) {
     Member member = memberRepository.findById(memberId)
         .orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-    Post post = Post.of(postRequest.getTitle(), postRequest.getContent(), member, postRequest.getDate());
+    Post post = Post.of(postRequest.getTitle(), postRequest.getContent(), member, LocalDateTime.now());
     postRepository.save(post);
     return PostResponse.from(post);
   }
