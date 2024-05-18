@@ -13,6 +13,6 @@ public interface MemberService {
 	CreateMemberResponse createMember(CreateMemberRequest createMemberRequest);
 	UpdateMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest);
 	FindMemberResponse findMember(Long memberId);
-	List<CreateMemberResponse> findAll();
+	List<FindMemberResponse> findAll();
 }
 

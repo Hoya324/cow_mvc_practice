@@ -33,8 +33,8 @@ public class MemberController {
         return memberService.findMember(memberId);
     }
 
-    @GetMapping("all")
-    public List<CreateMemberResponse> findMembers() {
+    @GetMapping("/all")
+    public List<FindMemberResponse> findMembers() {
         return memberService.findAll();
     }
 }

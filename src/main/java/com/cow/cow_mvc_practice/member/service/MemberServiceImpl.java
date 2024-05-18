@@ -44,11 +44,12 @@ public class MemberServiceImpl implements MemberService {
         return FindMemberResponse.from(member);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public List<CreateMemberResponse> findAll() {
+    public List<FindMemberResponse> findAll() {
         List<Member> members = memberRepository.findAll();
         return members.stream()
-                .map(CreateMemberResponse::from)
+                .map(FindMemberResponse::from)
                 .collect(Collectors.toList());
     }
 
