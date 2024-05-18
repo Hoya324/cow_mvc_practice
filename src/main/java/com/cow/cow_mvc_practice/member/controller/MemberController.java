@@ -1,9 +1,13 @@
 package com.cow.cow_mvc_practice.member.controller;
 
 import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,7 +55,12 @@ public class MemberController {
 	}
 
 	@DeleteMapping("/{memberId}")
-	public String delete(@PathVariable final Long memberId) {
+	public ResponseEntity<Void> delete(@PathVariable final Long memberId) {
 		return memberService.delete(memberId);
+	}
+
+	@ExceptionHandler(EntityNotFoundException.class)
+	public ResponseEntity<String> handleNoSuchElementFoundException(EntityNotFoundException exception) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
 	}
 }

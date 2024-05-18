@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,9 +49,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String delete(Long memberId) {
+	public ResponseEntity<Void> delete(Long memberId) {
+		boolean isExistMember = memberRepository.existsById(memberId);
+		if (!isExistMember) {
+			throw new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다.");
+		}
 		memberRepository.deleteById(memberId);
-		return "삭제에 성공하였습니다.";
+		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
 	@Override
