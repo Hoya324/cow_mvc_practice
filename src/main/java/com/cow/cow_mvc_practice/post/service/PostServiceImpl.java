@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -24,6 +27,14 @@ public class PostServiceImpl implements PostService {
         Post post = createPostRequest.toEntity(member);
         postJPARepository.save(post);
         return CreatePostResponse.from(post);
+    }
+
+    @Override
+    public List<CreatePostResponse> findAll() {
+        List<Post> posts = postJPARepository.findAll();
+        return posts.stream()
+                .map(CreatePostResponse::from)
+                .collect(Collectors.toList());
     }
 
     private Member findMember(Long memberId) {
