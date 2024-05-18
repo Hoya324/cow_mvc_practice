@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
-import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.member.dto.request.MemberRequest;
+import com.cow.cow_mvc_practice.member.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;

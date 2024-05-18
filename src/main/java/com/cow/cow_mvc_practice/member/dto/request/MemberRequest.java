@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice.member.controller.dto.request;
+package com.cow.cow_mvc_practice.member.dto.request;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
 

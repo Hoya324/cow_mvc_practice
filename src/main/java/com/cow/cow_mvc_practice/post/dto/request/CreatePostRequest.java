@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice.post.controller.dto.request;
+package com.cow.cow_mvc_practice.post.dto.request;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.post.entity.Post;

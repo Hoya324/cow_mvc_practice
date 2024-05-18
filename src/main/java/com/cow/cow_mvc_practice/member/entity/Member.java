@@ -50,14 +50,6 @@ public class Member {
                 .name(name)
                 .build();
     }
-
-    public static Member of(Long id, String name) {
-        return Member.builder()
-                .id(id)
-                .name(name)
-                .build();
-    }
-
     public void updateName(String name) {
         this.name = name;
     }

@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice.post.controller.dto.response;
+package com.cow.cow_mvc_practice.post.dto.response;
 
 import com.cow.cow_mvc_practice.post.entity.Post;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class CreatePostResponse {
+public class DeletePostResponse {
 
     private final Long postId;
     private final String title;
@@ -15,15 +15,15 @@ public class CreatePostResponse {
     private final LocalDateTime created_at;
 
     @Builder
-    private CreatePostResponse(final Long postId, final String title, final String content, LocalDateTime created_at) {
+    private DeletePostResponse(final Long postId, final String title, final String content, LocalDateTime created_at) {
      this.postId = postId;
      this.title = title;
      this.content = content;
      this.created_at = created_at;
     }
 
-    public static CreatePostResponse from(Post post) {
-        return CreatePostResponse.builder()
+    public static DeletePostResponse from(Post post) {
+        return DeletePostResponse.builder()
                 .postId(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())

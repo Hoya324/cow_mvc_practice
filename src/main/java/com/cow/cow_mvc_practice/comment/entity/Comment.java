@@ -42,7 +42,7 @@ public class Comment {
 		this.member = member;
 	}
 
-	public static Comment from(final String title, final String content, final Post post) {
+	public static Comment from(final String content, final Post post) {
 		return Comment.builder()
 				.content(content)
 				.post(post)

@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice.post.controller.dto.response;
+package com.cow.cow_mvc_practice.post.dto.response;
 
 import com.cow.cow_mvc_practice.post.entity.Post;
 import lombok.Builder;
@@ -7,30 +7,27 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class FindPostResponse {
+public class CreatePostResponse {
 
     private final Long postId;
     private final String title;
     private final String content;
     private final LocalDateTime created_at;
-    private final int commentCount;
 
     @Builder
-    private FindPostResponse(final Long postId, final String title, final String content, LocalDateTime created_at, int commentCount) {
+    private CreatePostResponse(final Long postId, final String title, final String content, LocalDateTime created_at) {
      this.postId = postId;
      this.title = title;
      this.content = content;
      this.created_at = created_at;
-     this.commentCount = commentCount;
     }
 
-    public static FindPostResponse from(Post post, int commentCount) {
-        return FindPostResponse.builder()
+    public static CreatePostResponse from(Post post) {
+        return CreatePostResponse.builder()
                 .postId(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .created_at(post.getCreated_at())
-                .commentCount(commentCount)
                 .build();
     }
 }

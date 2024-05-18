@@ -1,9 +1,9 @@
 package com.cow.cow_mvc_practice.post.controller;
 
-import com.cow.cow_mvc_practice.post.controller.dto.request.CreatePostRequest;
-import com.cow.cow_mvc_practice.post.controller.dto.request.DeletePostRequest;
-import com.cow.cow_mvc_practice.post.controller.dto.response.CreatePostResponse;
-import com.cow.cow_mvc_practice.post.controller.dto.response.FindPostResponse;
+import com.cow.cow_mvc_practice.post.dto.request.CreatePostRequest;
+import com.cow.cow_mvc_practice.post.dto.request.DeletePostRequest;
+import com.cow.cow_mvc_practice.post.dto.response.CreatePostResponse;
+import com.cow.cow_mvc_practice.post.dto.response.FindPostResponse;
 import com.cow.cow_mvc_practice.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

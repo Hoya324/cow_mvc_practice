@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 
