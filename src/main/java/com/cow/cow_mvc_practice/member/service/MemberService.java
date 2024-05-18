@@ -10,9 +10,9 @@ import com.cow.cow_mvc_practice.member.dto.response.UpdateMemberResponse;
 
 public interface MemberService {
 
-	CreateMemberResponse createMember(CreateMemberRequest createMemberRequest);
+	CreateMemberResponse create(CreateMemberRequest createMemberRequest);
 	UpdateMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest);
-	FindMemberResponse findMember(Long memberId);
+	FindMemberResponse find(Long memberId);
 	List<FindMemberResponse> findAll();
 }
 

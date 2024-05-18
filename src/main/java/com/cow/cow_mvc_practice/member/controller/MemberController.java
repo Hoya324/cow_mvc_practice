@@ -19,8 +19,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/new")
-    public CreateMemberResponse createMember(@RequestBody final CreateMemberRequest createMemberRequest) {
-        return memberService.createMember(createMemberRequest);
+    public CreateMemberResponse create(@RequestBody final CreateMemberRequest createMemberRequest) {
+        return memberService.create(createMemberRequest);
     }
 
     @PatchMapping("/{memberId}")
@@ -29,12 +29,12 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}")
-    public FindMemberResponse findMember(@PathVariable final Long memberId) {
-        return memberService.findMember(memberId);
+    public FindMemberResponse find(@PathVariable final Long memberId) {
+        return memberService.find(memberId);
     }
 
     @GetMapping("/all")
-    public List<FindMemberResponse> findMembers() {
+    public List<FindMemberResponse> findAll() {
         return memberService.findAll();
     }
 }

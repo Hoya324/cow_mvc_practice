@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberJPARepository memberRepository;
 
     @Override
-    public CreateMemberResponse createMember(CreateMemberRequest createMemberRequest) {
+    public CreateMemberResponse create(CreateMemberRequest createMemberRequest) {
         Member member = createMemberRequest.toEntity();
         memberRepository.save(member);
         return CreateMemberResponse.from(member);
@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional(readOnly = true)
     @Override
-    public FindMemberResponse findMember(Long memberId) {
+    public FindMemberResponse find(Long memberId) {
         Member member = findById(memberId);
         return FindMemberResponse.from(member);
     }
