@@ -18,9 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional
 public class PostServiceImpl implements PostService{
-
   private final PostJPARepository postRepository;
-
   private final MemberJPARepository memberRepository;
 
   @Override

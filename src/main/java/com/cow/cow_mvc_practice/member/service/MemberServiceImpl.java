@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 		Member member = memberRepository.findById(memberId)
 				.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
 		String name = Optional.ofNullable(updateMemberRequest.getName()).orElse(member.getName());
-		member.updateMember(name);
+		member.updateMemberName(name);
 		return MemberResponse.from(member);
 	}
 }

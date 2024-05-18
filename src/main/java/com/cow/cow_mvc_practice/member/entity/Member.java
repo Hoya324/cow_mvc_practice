@@ -22,12 +22,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "member_id")
 	private Long id;
-
 	private String name;
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -48,14 +46,7 @@ public class Member {
 			.build();
 	}
 
-	public static Member of(Long id, String name) {
-		return Member.builder()
-			.id(id)
-			.name(name)
-			.build();
-	}
-
-	public void updateMember(String name) {
+	public void updateMemberName(String name) {
 		this.name = name;
 	}
 }

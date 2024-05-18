@@ -12,18 +12,14 @@ import lombok.Getter;
 @Getter
 public class PostResponse {
   private final Long id;
-
   private final String title;
-
   private final String content;
-
   private final String memberName;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
   private final LocalDateTime date;
 
   private final int commentCount;
-
   private final List<String> comments;
 
   @Builder

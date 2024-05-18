@@ -31,9 +31,7 @@ public class Post {
 	@Column(name = "post_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String title;
-
 	private String content;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
@@ -43,7 +41,7 @@ public class Post {
 	@JoinColumn(name = "member_id")
 	private Member member;
 
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	private final List<Comment> comments = new ArrayList<>();
 
 	@Builder

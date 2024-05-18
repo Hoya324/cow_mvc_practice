@@ -23,10 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
-
 	private final MemberService memberService;
 
-	/* MemberResponse dto 적용 */
 	@PostMapping("/new")
 	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
 		return memberService.join(memberRequest);
