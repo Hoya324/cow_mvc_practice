@@ -1,23 +1,15 @@
 package com.cow.cow_mvc_practice.member.controller.dto.request;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class MemberRequest {
-	Long id;
-	final String name;
+	private String name;
 
-	@Builder
-	private MemberRequest(final String name) {
-		this.name = name;
-	}
-
-	public static Member toEntity(String name) {
-		return Member.from(name);
+	public Member toEntity() {
+		return Member.from(this.name);
 	}
 }

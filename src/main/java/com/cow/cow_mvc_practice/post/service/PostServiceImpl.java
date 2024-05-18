@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,6 @@ public class PostServiceImpl implements PostService{
 
   private final PostJPARepository postRepository;
 
-  @Autowired
   private final MemberJPARepository memberRepository;
 
   @Override
@@ -42,9 +40,19 @@ public class PostServiceImpl implements PostService{
     return PostResponse.from(post);
   }
 
+  @Transactional(readOnly = true)
   @Override
   public List<PostResponse> findAll() {
     List<Post> posts = postRepository.findAll();
+    return posts.stream()
+        .map(PostResponse::from)
+        .collect(Collectors.toList());
+  }
+
+  @Transactional(readOnly = true)
+  @Override
+  public List<PostResponse> findAllByMember(Long memberId) {
+    List<Post> posts = postRepository.findAllByMemberId(memberId);
     return posts.stream()
         .map(PostResponse::from)
         .collect(Collectors.toList());

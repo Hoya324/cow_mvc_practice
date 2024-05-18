@@ -9,4 +9,5 @@ public interface PostService {
   PostResponse findOne(Long postId);
   PostResponse join(Long memberId, PostRequest postRequest);
   List<PostResponse> findAll();
+  List<PostResponse> findAllByMember(Long memberId);
 }

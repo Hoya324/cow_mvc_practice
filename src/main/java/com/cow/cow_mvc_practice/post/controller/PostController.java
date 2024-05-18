@@ -17,16 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/post")
 @RequiredArgsConstructor
 public class PostController {
-
   private final PostService postService;
 
-  @PostMapping("/members/{memberId}/new")
-  public PostResponse create(@PathVariable final Long memberId ,@RequestBody final PostRequest postRequest) {
+  @PostMapping("/new/member/{memberId}")
+  public PostResponse create(@PathVariable final Long memberId, @RequestBody final PostRequest postRequest) {
     return postService.join(memberId, postRequest);
   }
 
   @GetMapping("/{postId}")
-  public PostResponse findMember(@PathVariable final Long postId) {
+  public PostResponse findPost(@PathVariable final Long postId) {
     return postService.findOne(postId);
   }
 
@@ -35,13 +34,13 @@ public class PostController {
     return postService.findOne(postId);
   }
 
-  @GetMapping("all")
+  @GetMapping("/all")
   public List<PostResponse> findPosts() {
     return postService.findAll();
   }
 
-  @PostMapping("/{memberId}/new")
-  public PostResponse create2(@PathVariable final Long memberId, @RequestBody final PostRequest postRequest) {
-    return postService.join(memberId, postRequest);
+  @GetMapping("/all/member/{memberId}")
+  public List<PostResponse> findPostsByMember(@PathVariable final Long memberId) {
+    return postService.findAllByMember(memberId);
   }
 }

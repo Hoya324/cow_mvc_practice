@@ -1,11 +1,10 @@
 package com.cow.cow_mvc_practice.member.controller.dto.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class UpdateMemberRequest {
-
-	final String name = null;
+	private String name;
 }
