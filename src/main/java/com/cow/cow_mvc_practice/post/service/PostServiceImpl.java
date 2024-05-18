@@ -30,6 +30,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public CreatePostResponse findPost(Long postId) {
+        Post post = postJPARepository.findById(postId).orElseThrow(() ->
+                new EntityNotFoundException("게시글이 존재하지 않습니다."));
+        return CreatePostResponse.from(post);
+    }
+
+    @Override
     public List<CreatePostResponse> findAll() {
         List<Post> posts = postJPARepository.findAll();
         return posts.stream()

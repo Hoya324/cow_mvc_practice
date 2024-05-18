@@ -8,5 +8,6 @@ import java.util.List;
 public interface PostService {
 
    CreatePostResponse createPost(CreatePostRequest createPostRequest);
+   CreatePostResponse findPost(Long postId);
    List<CreatePostResponse> findAll();
 }

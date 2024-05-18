@@ -21,7 +21,13 @@ public class PostController {
         return postService.createPost(createPostRequest);
     }
 
-    @PostMapping("/all")
+    @GetMapping("{postId}")
+    public CreatePostResponse findPost(@PathVariable final Long postId){
+        return postService.findPost(postId);
+    }
+
+
+    @GetMapping("/all")
     public List<CreatePostResponse> findPosts() {
         return postService.findAll();
     }
