@@ -1,7 +1,6 @@
 package com.cow.cow_mvc_practice.member.dto.response;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
-
 import lombok.Builder;
 import lombok.Getter;
 

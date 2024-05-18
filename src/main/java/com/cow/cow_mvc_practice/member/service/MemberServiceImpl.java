@@ -3,13 +3,12 @@ package com.cow.cow_mvc_practice.member.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.cow.cow_mvc_practice.member.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
-
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberJPARepository memberRepository;
 
 	@Override
-	public MemberResponse join(String name) {
-		Member member = Member.from(name);
+	public MemberResponse createMember(CreateMemberRequest createMemberRequest) {
+		Member member = createMemberRequest.toEntity();
 		memberRepository.save(member);
 		return MemberResponse.from(member);
 	}
