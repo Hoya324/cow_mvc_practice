@@ -23,11 +23,10 @@ public class MemberController {
 		return memberService.join(memberRequest.getName());
 	}
 
-//	@PatchMapping("/{memberId}")
-//	public MemberResponse update(@PathVariable("memberId") String memberId, @RequestBody final MemberRequest memberRequest) {
-//
-//		return memberService.
-//	}
+	@PatchMapping("/{memberId}")
+	public MemberResponse update(@PathVariable("memberId") Long memberId, @RequestBody final MemberRequest memberRequest) {
+		return memberService.update(memberId, memberRequest.getName());
+	}
 
 	@GetMapping("/{memberId}")
 	public MemberResponse findMember(@PathVariable final Long memberId) {

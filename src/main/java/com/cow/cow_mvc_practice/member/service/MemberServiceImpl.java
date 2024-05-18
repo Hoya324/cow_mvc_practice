@@ -19,26 +19,20 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberJPARepository memberRepository;
-	// private final MemberRepository memberRepository;
 
-	/* 기본 */
-	// @Override
-	// public void join(MemberRequest memberRequest) {
-	// 	Member member = Member.from(memberRequest.getId(), memberRequest.getName());
-	// 	memberRepository.save(member);
-	// }
-	//
-	// @Transactional(readOnly = true)
-	// @Override
-	// public Member findOne(Long memberId) {
-	// 	return memberRepository.findById(memberId)
-	// 		.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-	// }
-
-	/* MemberResponse dto 적용 */
 	@Override
 	public MemberResponse join(String name) {
 		Member member = Member.from(name);
+		memberRepository.save(member);
+		return MemberResponse.from(member);
+	}
+
+	@Transactional
+	@Override
+	public MemberResponse update(Long memberId, String name) {
+		Member member = memberRepository.findById(memberId)
+				.orElseThrow(() -> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
+		member.updateName(name);
 		memberRepository.save(member);
 		return MemberResponse.from(member);
 	}
