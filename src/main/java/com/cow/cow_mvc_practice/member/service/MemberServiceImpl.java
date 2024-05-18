@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
 import com.cow.cow_mvc_practice.member.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.response.FindMemberResponse;
 import com.cow.cow_mvc_practice.member.dto.response.UpdateMemberResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,9 +39,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional(readOnly = true)
     @Override
-    public CreateMemberResponse findOne(Long memberId) {
+    public FindMemberResponse findMember(Long memberId) {
         Member member = findById(memberId);
-        return CreateMemberResponse.from(member);
+        return FindMemberResponse.from(member);
     }
 
     @Override
@@ -50,6 +51,7 @@ public class MemberServiceImpl implements MemberService {
                 .map(CreateMemberResponse::from)
                 .collect(Collectors.toList());
     }
+
     private Member findById(Long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));

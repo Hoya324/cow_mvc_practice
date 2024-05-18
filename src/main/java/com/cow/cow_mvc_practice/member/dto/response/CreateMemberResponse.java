@@ -5,18 +5,18 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class MemberResponse {
+public class CreateMemberResponse {
 	private final Long id;
 	private final String name;
 
 	@Builder
-	private MemberResponse(final Long id, final String name) {
+	private CreateMemberResponse(final Long id, final String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public static MemberResponse from(final Member member) {
-		return MemberResponse.builder()
+	public static CreateMemberResponse from(final Member member) {
+		return CreateMemberResponse.builder()
 			.id(member.getId())
 			.name(member.getName())
 			.build();

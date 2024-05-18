@@ -3,6 +3,7 @@ package com.cow.cow_mvc_practice.member.controller;
 import java.util.List;
 
 import com.cow.cow_mvc_practice.member.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.response.FindMemberResponse;
 import com.cow.cow_mvc_practice.member.dto.response.UpdateMemberResponse;
 import org.springframework.web.bind.annotation.*;
 import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
@@ -28,13 +29,8 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}")
-    public CreateMemberResponse findMember(@PathVariable final Long memberId) {
-        return memberService.findOne(memberId);
-    }
-
-    @GetMapping()
-    public CreateMemberResponse findMemberQuery(@RequestParam final Long memberId) {
-        return memberService.findOne(memberId);
+    public FindMemberResponse findMember(@PathVariable final Long memberId) {
+        return memberService.findMember(memberId);
     }
 
     @GetMapping("all")
