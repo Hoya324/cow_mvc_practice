@@ -9,5 +9,4 @@ public class CowMvcPracticeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CowMvcPracticeApplication.class, args);
 	}
-
 }

@@ -22,43 +22,43 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "member_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
+    private Long id;
 
-	private String name;
+    private String name;
 
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-	private final List<Post> posts = new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
+    private final List<Post> posts = new ArrayList<>();
 
-	@Builder
-	private Member(final Long id, final String name) {
-		this.id = id;
-		this.name = name;
-	}
+    @Builder
+    private Member(final Long id, final String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-	public static Member from(String name) {
-		return Member.builder()
-			.name(name)
-			.build();
-	}
+    public static Member from(String name) {
+        return Member.builder()
+                .name(name)
+                .build();
+    }
 
-	public static Member from(Long id, String name) {
-		return Member.builder()
-				.id(id)
-				.name(name)
-				.build();
-	}
+    public static Member from(Long id, String name) {
+        return Member.builder()
+                .id(id)
+                .name(name)
+                .build();
+    }
 
-	public static Member of(Long id, String name) {
-		return Member.builder()
-			.id(id)
-			.name(name)
-			.build();
-	}
+    public static Member of(Long id, String name) {
+        return Member.builder()
+                .id(id)
+                .name(name)
+                .build();
+    }
 
-	public void updateName(String name) {
-		this.name = name;
-	}
+    public void updateName(String name) {
+        this.name = name;
+    }
 }

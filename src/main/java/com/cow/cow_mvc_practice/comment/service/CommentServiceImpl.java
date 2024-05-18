@@ -4,7 +4,6 @@ import com.cow.cow_mvc_practice.comment.dto.request.CommentRequest;
 import com.cow.cow_mvc_practice.comment.dto.response.CommentResponse;
 import com.cow.cow_mvc_practice.comment.entity.Comment;
 import com.cow.cow_mvc_practice.comment.repository.CommentJPARepository;
-import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 import com.cow.cow_mvc_practice.post.entity.Post;
@@ -13,9 +12,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

@@ -1,7 +1,9 @@
 package com.cow.cow_mvc_practice.post.controller;
 
 import com.cow.cow_mvc_practice.post.controller.dto.request.CreatePostRequest;
+import com.cow.cow_mvc_practice.post.controller.dto.request.DeletePostRequest;
 import com.cow.cow_mvc_practice.post.controller.dto.response.CreatePostResponse;
+import com.cow.cow_mvc_practice.post.controller.dto.response.FindPostResponse;
 import com.cow.cow_mvc_practice.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,14 @@ public class PostController {
     }
 
     @GetMapping("{postId}")
-    public CreatePostResponse findPost(@PathVariable final Long postId){
+    public FindPostResponse findPost(@PathVariable final Long postId){
         return postService.findPost(postId);
     }
 
+    @DeleteMapping("/{postId}/delete")
+    public String deletePost(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest){
+        return postService.delete(postId, deletePostRequest);
+    }
 
     @GetMapping("/all")
     public List<CreatePostResponse> findPosts() {
