@@ -2,9 +2,11 @@ package com.cow.cow_mvc_practice.member.controller;
 
 import java.util.List;
 
+import com.cow.cow_mvc_practice.member.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.response.UpdateMemberResponse;
 import org.springframework.web.bind.annotation.*;
 import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
-import com.cow.cow_mvc_practice.member.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.CreateMemberResponse;
 import com.cow.cow_mvc_practice.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
@@ -16,27 +18,27 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/new")
-    public MemberResponse createMember(@RequestBody final CreateMemberRequest createMemberRequest) {
+    public CreateMemberResponse createMember(@RequestBody final CreateMemberRequest createMemberRequest) {
         return memberService.createMember(createMemberRequest);
     }
 
     @PatchMapping("/{memberId}")
-    public MemberResponse update(@PathVariable("memberId") Long memberId, @RequestBody final CreateMemberRequest createMemberRequest) {
-        return memberService.update(memberId, createMemberRequest.getName());
+    public UpdateMemberResponse update(@PathVariable("memberId") Long memberId, @RequestBody final UpdateMemberRequest updateMemberRequest) {
+        return memberService.update(memberId, updateMemberRequest);
     }
 
     @GetMapping("/{memberId}")
-    public MemberResponse findMember(@PathVariable final Long memberId) {
+    public CreateMemberResponse findMember(@PathVariable final Long memberId) {
         return memberService.findOne(memberId);
     }
 
     @GetMapping()
-    public MemberResponse findMemberQuery(@RequestParam final Long memberId) {
+    public CreateMemberResponse findMemberQuery(@RequestParam final Long memberId) {
         return memberService.findOne(memberId);
     }
 
     @GetMapping("all")
-    public List<MemberResponse> findMembers() {
+    public List<CreateMemberResponse> findMembers() {
         return memberService.findAll();
     }
 }

@@ -50,6 +50,7 @@ public class Member {
                 .name(name)
                 .build();
     }
+
     public void updateName(String name) {
         this.name = name;
     }
