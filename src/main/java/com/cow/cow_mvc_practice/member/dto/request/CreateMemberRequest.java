@@ -7,9 +7,7 @@ import lombok.Getter;
 public class CreateMemberRequest {
 	private String name;
 
-	 public Member toEntity() {
-		 return Member.builder()
-			 .name(name)
-			 .build();
-	 }
+	public Member toEntity() {
+		return Member.from(this.name);
+	}
 }

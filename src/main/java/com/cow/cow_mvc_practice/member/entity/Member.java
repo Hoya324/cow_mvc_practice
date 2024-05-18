@@ -44,13 +44,6 @@ public class Member {
                 .build();
     }
 
-    public static Member from(Long id, String name) {
-        return Member.builder()
-                .id(id)
-                .name(name)
-                .build();
-    }
-
     public void updateName(String name) {
         this.name = name;
     }
