@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,5 +56,15 @@ public class PostServiceImpl implements PostService{
     return posts.stream()
         .map(PostResponse::from)
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public ResponseEntity<Void> delete(Long postId) {
+    boolean isExistPost = postRepository.existsById(postId);
+    if (!isExistPost) {
+      throw new EntityNotFoundException("[Error] 게시글을 찾을 수 없습니다.");
+    }
+    postRepository.deleteById(postId);
+    return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
   }
 }

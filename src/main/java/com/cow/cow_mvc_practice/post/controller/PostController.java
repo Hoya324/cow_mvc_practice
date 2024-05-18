@@ -3,8 +3,13 @@ package com.cow.cow_mvc_practice.post.controller;
 import com.cow.cow_mvc_practice.post.controller.dto.request.PostRequest;
 import com.cow.cow_mvc_practice.post.controller.dto.response.PostResponse;
 import com.cow.cow_mvc_practice.post.service.PostService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,5 +47,15 @@ public class PostController {
   @GetMapping("/all/member/{memberId}")
   public List<PostResponse> findPostsByMember(@PathVariable final Long memberId) {
     return postService.findAllByMember(memberId);
+  }
+
+  @DeleteMapping("/{postId}")
+  public ResponseEntity<Void> deletePost(@PathVariable final Long postId) {
+    return postService.delete(postId);
+  }
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  public ResponseEntity<String> handleNoSuchElementFoundException(EntityNotFoundException exception) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
   }
 }
