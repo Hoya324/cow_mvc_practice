@@ -19,8 +19,7 @@ public class MemberController {
 
 	/* MemberResponse dto 적용 */
 	@PostMapping("/new")
-	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
-		System.out.println("111");
+	public MemberResponse createMember(@RequestBody final MemberRequest memberRequest) {
 		return memberService.join(memberRequest.getName());
 	}
 
