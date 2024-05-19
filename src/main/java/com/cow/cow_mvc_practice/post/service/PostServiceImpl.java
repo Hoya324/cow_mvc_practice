@@ -43,14 +43,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public String delete(Long postId, DeletePostRequest deletePostRequest) {
+    public void delete(Long postId, DeletePostRequest deletePostRequest) {
         Post post = findPost(postId);
         Member member = findMember(deletePostRequest.getId());
         if (post.getMember().getId().equals(member.getId())) {
             postJPARepository.delete(post);
-            return "삭제완료";
         }
-        return "작성자가 아닙니다";
     }
 
     @Override

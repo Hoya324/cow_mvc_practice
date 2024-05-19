@@ -11,6 +11,6 @@ public interface PostService {
 
    CreatePostResponse create(CreatePostRequest createPostRequest);
    FindPostResponse find(Long postId);
-   String delete(Long postId, DeletePostRequest deletePostRequest);
+   void delete(Long postId, DeletePostRequest deletePostRequest);
    List<CreatePostResponse> findAll();
 }

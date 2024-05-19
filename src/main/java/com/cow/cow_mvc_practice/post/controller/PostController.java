@@ -28,8 +28,8 @@ public class PostController {
     }
 
     @DeleteMapping("/{postId}")
-    public String delete(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest) {
-        return postService.delete(postId, deletePostRequest);
+    public void delete(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest) {
+        postService.delete(postId, deletePostRequest);
     }
 
     @GetMapping("/all")
