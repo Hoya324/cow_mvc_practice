@@ -6,15 +6,11 @@ import com.cow.cow_mvc_practice.post.entity.Post;
 import lombok.Getter;
 
 @Getter
-public class CommentRequest {
-	 Long id;
-	 String content;
+public class CreateCommentRequest {
+	 private Long id;
+	 private String content;
 
 	 public Comment toEntity(Member member, Post post) {
-		 return Comment.builder()
-				 .content(content)
-				 .post(post)
-				 .member(member)
-				 .build();
+		 return Comment.from(this.content, member, post);
 	 }
 }

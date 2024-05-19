@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class CommentResponse {
+public class CreatedCommentResponse {
 	private final Long id;
 	private final Long postId;
 	private final Long memberId;
@@ -16,7 +16,7 @@ public class CommentResponse {
 
 
 	@Builder
-	private CommentResponse(final Long id, Long postId, Long memberId, final String content, LocalDateTime createTime) {
+	private CreatedCommentResponse(final Long id, Long postId, Long memberId, final String content, LocalDateTime createTime) {
 		this.id = id;
         this.postId = postId;
         this.memberId = memberId;
@@ -24,8 +24,8 @@ public class CommentResponse {
         this.createTime = createTime;
     }
 
-	public static CommentResponse from(final Comment comment) {
-		return CommentResponse.builder()
+	public static CreatedCommentResponse from(final Comment comment) {
+		return CreatedCommentResponse.builder()
 				.id(comment.getId())
 				.postId(comment.getPost().getId())
 				.memberId(comment.getMember().getId())

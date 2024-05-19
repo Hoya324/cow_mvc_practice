@@ -1,7 +1,7 @@
 package com.cow.cow_mvc_practice.comment.controller;
 
-import com.cow.cow_mvc_practice.comment.dto.request.CommentRequest;
-import com.cow.cow_mvc_practice.comment.dto.response.CommentResponse;
+import com.cow.cow_mvc_practice.comment.dto.request.CreateCommentRequest;
+import com.cow.cow_mvc_practice.comment.dto.response.CreatedCommentResponse;
 import com.cow.cow_mvc_practice.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +14,8 @@ public class CommentController {
 	private final CommentService commentService;
 
 	@PostMapping("/new")
-	public CommentResponse createComment(@PathVariable Long postId, @RequestBody final CommentRequest commentRequest) {
-		return commentService.createComment(postId, commentRequest);
+	public CreatedCommentResponse create(@PathVariable Long postId, @RequestBody final CreateCommentRequest commentRequest) {
+		return commentService.create(postId, commentRequest);
 	}
 }
 
