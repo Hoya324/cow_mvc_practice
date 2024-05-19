@@ -5,18 +5,19 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class UpdateMemberResponse {
+public class UpdatedMemberResponse {
+
 	private final Long id;
 	private final String name;
 
 	@Builder
-	private UpdateMemberResponse(final Long id, final String name) {
+	private UpdatedMemberResponse(final Long id, final String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public static UpdateMemberResponse from(final Member member) {
-		return UpdateMemberResponse.builder()
+	public static UpdatedMemberResponse from(final Member member) {
+		return UpdatedMemberResponse.builder()
 			.id(member.getId())
 			.name(member.getName())
 			.build();

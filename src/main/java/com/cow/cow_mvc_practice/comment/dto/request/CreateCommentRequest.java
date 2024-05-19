@@ -7,10 +7,11 @@ import lombok.Getter;
 
 @Getter
 public class CreateCommentRequest {
-	 private Long id;
-	 private String content;
 
-	 public Comment toEntity(Member member, Post post) {
-		 return Comment.from(this.content, member, post);
-	 }
+    private Long id;
+    private String content;
+
+    public Comment toEntity(Member member, Post post) {
+        return Comment.from(this.content, member, post);
+    }
 }

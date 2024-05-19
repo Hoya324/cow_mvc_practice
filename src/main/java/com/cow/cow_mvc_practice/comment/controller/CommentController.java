@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentController {
 
-	private final CommentService commentService;
+    private final CommentService commentService;
 
-	@PostMapping("/new")
-	public CreatedCommentResponse create(@PathVariable Long postId, @RequestBody final CreateCommentRequest commentRequest) {
-		return commentService.create(postId, commentRequest);
-	}
+    @PostMapping("/new")
+    public CreatedCommentResponse create(@PathVariable Long postId, @RequestBody final CreateCommentRequest commentRequest) {
+        return commentService.create(postId, commentRequest);
+    }
 }
 

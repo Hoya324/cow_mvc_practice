@@ -10,7 +10,10 @@ import java.util.List;
 public interface PostService {
 
    CreatePostResponse create(CreatePostRequest createPostRequest);
+
    FindPostResponse find(Long postId);
+
    void delete(Long postId, DeletePostRequest deletePostRequest);
+
    List<CreatePostResponse> findAll();
 }

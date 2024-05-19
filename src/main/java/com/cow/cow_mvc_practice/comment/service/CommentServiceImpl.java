@@ -18,26 +18,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CommentServiceImpl implements CommentService {
 
-	private final MemberJPARepository memberJPARepository;
-	private final PostJPARepository postJPARepository;
-	private final CommentJPARepository commentJPARepository;
+    private final MemberJPARepository memberJPARepository;
+    private final PostJPARepository postJPARepository;
+    private final CommentJPARepository commentJPARepository;
 
-	@Override
-	public CreatedCommentResponse create(Long postId, CreateCommentRequest createCommentRequest) {
-		Member member = findMember(createCommentRequest);
-		Post post = findPost(postId);
-		Comment comment = createCommentRequest.toEntity(member, post);
-		commentJPARepository.save(comment);
-		return CreatedCommentResponse.from(comment);
-	}
+    @Override
+    public CreatedCommentResponse create(Long postId, CreateCommentRequest createCommentRequest) {
+        Member member = findMember(createCommentRequest);
+        Post post = findPost(postId);
+        Comment comment = createCommentRequest.toEntity(member, post);
+        commentJPARepository.save(comment);
+        return CreatedCommentResponse.from(comment);
+    }
 
-	private Post findPost(Long postId) {
-		return postJPARepository.findById(postId)
-				.orElseThrow(() -> new EntityNotFoundException("게시글을 찾을 수 없습니다."));
-	}
+    private Post findPost(Long postId) {
+        return postJPARepository.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException("게시글을 찾을 수 없습니다."));
+    }
 
-	private Member findMember(CreateCommentRequest createCommentRequest) {
-		return memberJPARepository.findById(createCommentRequest.getId())
-				.orElseThrow(() -> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
-	}
+    private Member findMember(CreateCommentRequest createCommentRequest) {
+        return memberJPARepository.findById(createCommentRequest.getId())
+                .orElseThrow(() -> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
+    }
 }

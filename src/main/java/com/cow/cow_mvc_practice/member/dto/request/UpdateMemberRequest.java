@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class UpdateMemberRequest {
+
 	private String name;
 
 	public void updateEntity(Member member) {

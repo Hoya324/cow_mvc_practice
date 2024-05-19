@@ -16,10 +16,10 @@ public class CreatePostResponse {
 
     @Builder
     private CreatePostResponse(final Long postId, final String title, final String content, LocalDateTime created_at) {
-     this.postId = postId;
-     this.title = title;
-     this.content = content;
-     this.created_at = created_at;
+        this.postId = postId;
+        this.title = title;
+        this.content = content;
+        this.created_at = created_at;
     }
 
     public static CreatePostResponse from(Post post) {
@@ -27,7 +27,7 @@ public class CreatePostResponse {
                 .postId(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
-                .created_at(post.getCreated_at())
+                .created_at(post.getCreatedAt())
                 .build();
     }
 }

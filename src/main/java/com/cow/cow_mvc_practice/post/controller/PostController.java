@@ -27,13 +27,13 @@ public class PostController {
         return postService.find(postId);
     }
 
-    @DeleteMapping("/{postId}")
-    public void delete(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest) {
-        postService.delete(postId, deletePostRequest);
-    }
-
     @GetMapping("/all")
     public List<CreatePostResponse> findAll() {
         return postService.findAll();
+    }
+
+    @DeleteMapping("/{postId}")
+    public void delete(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest) {
+        postService.delete(postId, deletePostRequest);
     }
 }

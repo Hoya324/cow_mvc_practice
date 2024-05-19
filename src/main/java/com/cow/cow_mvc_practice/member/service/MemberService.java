@@ -4,15 +4,18 @@ import java.util.List;
 
 import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
 import com.cow.cow_mvc_practice.member.dto.request.UpdateMemberRequest;
-import com.cow.cow_mvc_practice.member.dto.response.CreateMemberResponse;
-import com.cow.cow_mvc_practice.member.dto.response.FindMemberResponse;
-import com.cow.cow_mvc_practice.member.dto.response.UpdateMemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.CreatedMemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.FoundMemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.UpdatedMemberResponse;
 
 public interface MemberService {
 
-	CreateMemberResponse create(CreateMemberRequest createMemberRequest);
-	UpdateMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest);
-	FindMemberResponse find(Long memberId);
-	List<FindMemberResponse> findAll();
+	CreatedMemberResponse create(CreateMemberRequest createMemberRequest);
+
+	FoundMemberResponse find(Long memberId);
+
+	List<FoundMemberResponse> findAll();
+
+	UpdatedMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest);
 }
 

@@ -16,31 +16,33 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Comment {
-	@Id
-	@Column(name = "comment_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String content;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "post_id")
-	private Post post;
+    @Id
+    @Column(name = "comment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
-	private Member member;
+    private String content;
 
-	@CreatedDate
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private LocalDateTime created_at;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
 
-	@Builder
-	private Comment(final String content, final Post post, final Member member) {
-		this.content = content;
-		this.created_at = LocalDateTime.now();
-		this.post = post;
-		this.member = member;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Builder
+    private Comment(final String content, final Post post, final Member member) {
+        this.content = content;
+        this.createdAt = LocalDateTime.now();
+        this.post = post;
+        this.member = member;
+    }
 
 	public static Comment from(final String content, final Member member, final Post post) {
 		return Comment.builder()

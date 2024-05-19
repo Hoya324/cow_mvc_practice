@@ -5,18 +5,19 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class FindMemberResponse {
+public class FoundMemberResponse {
+
 	private final Long id;
 	private final String name;
 
 	@Builder
-	private FindMemberResponse(final Long id, final String name) {
+	private FoundMemberResponse(final Long id, final String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public static FindMemberResponse from(final Member member) {
-		return FindMemberResponse.builder()
+	public static FoundMemberResponse from(final Member member) {
+		return FoundMemberResponse.builder()
 			.id(member.getId())
 			.name(member.getName())
 			.build();
