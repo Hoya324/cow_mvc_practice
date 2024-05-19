@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // 생성자를 통해서 값 변경 목적으로 접근하는 메시지들 차단
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Post {
     @Id
@@ -43,7 +43,11 @@ public class Post {
         this.created_at = LocalDateTime.now();
     }
 
-    public static Post from(final String title, final String content, final Member member) {
-        return Post.builder().title(title).content(content).member(member).build();
+    public static Post of(final String title, final String content, final Member member) {
+        return Post.builder()
+                .title(title)
+                .content(content)
+                .member(member)
+                .build();
     }
 }

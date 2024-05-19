@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface PostService {
 
-   CreatePostResponse createPost(CreatePostRequest createPostRequest);
-   FindPostResponse findPost(Long postId);
+   CreatePostResponse create(CreatePostRequest createPostRequest);
+   FindPostResponse find(Long postId);
    String delete(Long postId, DeletePostRequest deletePostRequest);
    List<CreatePostResponse> findAll();
 }

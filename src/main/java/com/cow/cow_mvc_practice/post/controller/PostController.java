@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
@@ -19,22 +18,22 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/new")
-    public CreatePostResponse createPost(@RequestBody final CreatePostRequest createPostRequest) {
-        return postService.createPost(createPostRequest);
+    public CreatePostResponse create(@RequestBody final CreatePostRequest createPostRequest) {
+        return postService.create(createPostRequest);
     }
 
     @GetMapping("{postId}")
-    public FindPostResponse findPost(@PathVariable final Long postId){
-        return postService.findPost(postId);
+    public FindPostResponse find(@PathVariable final Long postId) {
+        return postService.find(postId);
     }
 
-    @DeleteMapping("/{postId}/delete")
-    public String deletePost(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest){
+    @DeleteMapping("/{postId}")
+    public String delete(@PathVariable final Long postId, @RequestBody final DeletePostRequest deletePostRequest) {
         return postService.delete(postId, deletePostRequest);
     }
 
     @GetMapping("/all")
-    public List<CreatePostResponse> findPosts() {
+    public List<CreatePostResponse> findAll() {
         return postService.findAll();
     }
 }

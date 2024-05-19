@@ -21,32 +21,32 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional
 public class PostServiceImpl implements PostService {
+
     private final PostJPARepository postJPARepository;
     private final MemberJPARepository memberJPARepository;
     private final CommentJPARepository commentJPARepository;
+
     @Override
-    public CreatePostResponse createPost(CreatePostRequest createPostRequest) {
+    public CreatePostResponse create(CreatePostRequest createPostRequest) {
         Member member = findMember(createPostRequest.getId());
         Post post = createPostRequest.toEntity(member);
         postJPARepository.save(post);
         return CreatePostResponse.from(post);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public FindPostResponse findPost(Long postId) {
-        Post post = postJPARepository.findById(postId).orElseThrow(() ->
-                new EntityNotFoundException("게시글이 존재하지 않습니다."));
+    public FindPostResponse find(Long postId) {
+        Post post = findPost(postId);
         int commentCount = commentJPARepository.countByPostId(postId);
         return FindPostResponse.from(post, commentCount);
     }
 
     @Override
     public String delete(Long postId, DeletePostRequest deletePostRequest) {
-        Post post = postJPARepository.findById(postId).orElseThrow(() ->
-                new EntityNotFoundException("게시글이 존재하지 않습니다."));
-        Member member = findMember(deletePostRequest.getMemberId());
-
-        if(post.getMember().getId().equals(member.getId())){
+        Post post = findPost(postId);
+        Member member = findMember(deletePostRequest.getId());
+        if (post.getMember().getId().equals(member.getId())) {
             postJPARepository.delete(post);
             return "삭제완료";
         }
@@ -64,5 +64,10 @@ public class PostServiceImpl implements PostService {
     private Member findMember(Long memberId) {
         return memberJPARepository.findById(memberId)
                 .orElseThrow(() -> new EntityNotFoundException("회원을 찾을 수 없습니다."));
+    }
+
+    private Post findPost(Long postId) {
+        return postJPARepository.findById(postId).orElseThrow(() ->
+                new EntityNotFoundException("게시글이 존재하지 않습니다."));
     }
 }
