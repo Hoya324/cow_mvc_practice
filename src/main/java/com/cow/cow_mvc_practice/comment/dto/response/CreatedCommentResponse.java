@@ -15,15 +15,6 @@ public class CreatedCommentResponse {
     private final String content;
     private final LocalDateTime createTime;
 
-    public static CreatedCommentResponse from(final Comment comment) {
-        return CreatedCommentResponse.builder()
-                .id(comment.getId())
-                .postId(comment.getPost().getId())
-                .memberId(comment.getMember().getId())
-                .content(comment.getContent())
-                .createTime(comment.getCreatedAt()).build();
-    }
-
     @Builder
     private CreatedCommentResponse(final Long id, final Long postId, final Long memberId, final String content, final LocalDateTime createTime) {
         this.id = id;
@@ -31,5 +22,14 @@ public class CreatedCommentResponse {
         this.memberId = memberId;
         this.content = content;
         this.createTime = createTime;
+    }
+
+    public static CreatedCommentResponse from(final Comment comment) {
+        return CreatedCommentResponse.builder()
+                .id(comment.getId())
+                .postId(comment.getPost().getId())
+                .memberId(comment.getMember().getId())
+                .content(comment.getContent())
+                .createTime(comment.getCreatedAt()).build();
     }
 }
