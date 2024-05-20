@@ -5,27 +5,15 @@ import java.util.List;
 
 import com.cow.cow_mvc_practice.post.entity.Post;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.cow.cow_mvc_practice.utill.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long id;
+@Entity
+@AttributeOverride(name = "id", column = @Column(name = "member_id"))
+public class Member extends BaseEntity {
 
     private String name;
 
@@ -33,8 +21,7 @@ public class Member {
     private final List<Post> posts = new ArrayList<>();
 
     @Builder
-    private Member(final Long id, final String name) {
-        this.id = id;
+    private Member(final String name) {
         this.name = name;
     }
 

@@ -1,26 +1,16 @@
 package com.cow.cow_mvc_practice.comment.entity;
 
-
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.post.entity.Post;
+import com.cow.cow_mvc_practice.utill.TimestampedEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-
-import java.time.LocalDateTime;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Comment {
-
-    @Id
-    @Column(name = "comment_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@AttributeOverride(name = "id", column = @Column(name = "comment_id"))
+public class Comment extends TimestampedEntity {
 
     private String content;
 
@@ -32,14 +22,9 @@ public class Comment {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
     @Builder
     private Comment(final String content, final Post post, final Member member) {
         this.content = content;
-        this.createdAt = LocalDateTime.now();
         this.post = post;
         this.member = member;
     }

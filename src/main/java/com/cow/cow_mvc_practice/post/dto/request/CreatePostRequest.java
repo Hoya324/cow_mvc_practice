@@ -12,6 +12,6 @@ public class CreatePostRequest {
     private String content;
 
     public Post toEntity(Member member) {
-        return Post.of(this.title, this.content, member);
+        return Post.from(this.title, this.content, member);
     }
 }
