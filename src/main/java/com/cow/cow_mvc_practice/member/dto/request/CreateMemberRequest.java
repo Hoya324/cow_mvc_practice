@@ -9,6 +9,8 @@ public class CreateMemberRequest {
 	private String name;
 
 	public Member toEntity() {
-		return Member.from(this.name);
+		return Member.builder()
+				.name(this.name)
+				.build();
 	}
 }

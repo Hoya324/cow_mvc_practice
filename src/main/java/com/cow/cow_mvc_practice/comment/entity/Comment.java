@@ -29,11 +29,12 @@ public class Comment extends TimestampedEntity {
         this.member = member;
     }
 
-	public static Comment from(final String content, final Member member, final Post post) {
-		return Comment.builder()
-				.content(content)
-				.post(post)
-				.member(member)
-				.build();
-	}
+    public void addMember(Member member) {
+        this.member = member;
+    }
+
+    public void addPost(Post post) {
+        this.post = post;
+        post.getComments().add(this);
+    }
 }

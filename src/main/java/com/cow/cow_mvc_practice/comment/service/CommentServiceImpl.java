@@ -26,7 +26,9 @@ public class CommentServiceImpl implements CommentService {
     public CreatedCommentResponse create(Long postId, CreateCommentRequest createCommentRequest) {
         Member member = findMember(createCommentRequest);
         Post post = findPost(postId);
-        Comment comment = createCommentRequest.toEntity(member, post);
+        Comment comment = createCommentRequest.toEntity();
+        comment.addMember(member);
+        comment.addPost(post);
         commentJPARepository.save(comment);
         return CreatedCommentResponse.from(comment);
     }

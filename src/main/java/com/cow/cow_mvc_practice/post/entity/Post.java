@@ -32,11 +32,8 @@ public class Post extends TimestampedEntity {
         this.member = member;
     }
 
-    public static Post from(final String title, final String content, final Member member) {
-        return Post.builder()
-                .title(title)
-                .content(content)
-                .member(member)
-                .build();
+    public void addMember(Member member) {
+        this.member = member;
+        member.getPosts().add(this);
     }
 }

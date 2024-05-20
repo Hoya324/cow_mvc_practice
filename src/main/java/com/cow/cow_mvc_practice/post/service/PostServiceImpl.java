@@ -29,7 +29,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public CreatePostResponse create(CreatePostRequest createPostRequest) {
         Member member = findMember(createPostRequest.getId());
-        Post post = createPostRequest.toEntity(member);
+        Post post = createPostRequest.toEntity();
+        post.addMember(member);
         postJPARepository.save(post);
         return CreatePostResponse.from(post);
     }

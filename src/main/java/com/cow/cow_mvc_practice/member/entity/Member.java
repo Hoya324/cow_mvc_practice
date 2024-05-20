@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cow.cow_mvc_practice.post.entity.Post;
-
 import com.cow.cow_mvc_practice.utill.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,12 +22,6 @@ public class Member extends BaseEntity {
     @Builder
     private Member(final String name) {
         this.name = name;
-    }
-
-    public static Member from(String name) {
-        return Member.builder()
-                .name(name)
-                .build();
     }
 
     public void updateName(String name) {

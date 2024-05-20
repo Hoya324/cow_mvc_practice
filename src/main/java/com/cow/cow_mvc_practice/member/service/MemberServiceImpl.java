@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UpdatedMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest) {
         Member member = findById(memberId);
-        updateMemberRequest.updateEntity(member);
+        member.updateName(updateMemberRequest.getName());
         memberRepository.save(member);
         return UpdatedMemberResponse.from(member);
     }
