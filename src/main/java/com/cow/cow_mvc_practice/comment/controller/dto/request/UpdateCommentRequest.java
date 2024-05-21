@@ -1,4 +1,4 @@
-package com.cow.mvc.comment.controller.dto.request;
+package com.cow.cow_mvc_practice.comment.controller.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

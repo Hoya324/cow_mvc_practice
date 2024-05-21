@@ -1,4 +1,4 @@
-package com.cow.mvc.member.repository;
+package com.cow.cow_mvc_practice.member.repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.cow.mvc.member.entity.Member;
+import com.cow.cow_mvc_practice.member.entity.Member;
 
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
