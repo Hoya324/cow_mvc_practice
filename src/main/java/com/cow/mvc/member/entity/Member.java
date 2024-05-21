@@ -1,10 +1,10 @@
-package com.cow.mvc.member.entity;
+package com.cow.cow_mvc_practice.member.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cow.mvc.comment.entity.Comment;
-import com.cow.mvc.post.entity.Post;
+import com.cow.cow_mvc_practice.comment.entity.Comment;
+import com.cow.cow_mvc_practice.post.entity.Post;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

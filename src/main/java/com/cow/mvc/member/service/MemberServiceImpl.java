@@ -1,4 +1,4 @@
-package com.cow.mvc.member.service;
+package com.cow.cow_mvc_practice.member.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cow.mvc.member.controller.dto.request.MemberRequest;
-import com.cow.mvc.member.controller.dto.request.UpdateMemberRequest;
-import com.cow.mvc.member.controller.dto.response.MemberResponse;
-import com.cow.mvc.member.entity.Member;
-import com.cow.mvc.member.repository.MemberJPARepository;
+import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.member.entity.Member;
+import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

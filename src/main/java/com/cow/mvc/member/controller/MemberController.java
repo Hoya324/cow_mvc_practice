@@ -1,4 +1,4 @@
-package com.cow.mvc.member.controller;
+package com.cow.cow_mvc_practice.member.controller;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cow.mvc.member.controller.dto.request.MemberRequest;
-import com.cow.mvc.member.controller.dto.request.UpdateMemberRequest;
-import com.cow.mvc.member.controller.dto.response.MemberResponse;
-import com.cow.mvc.member.service.MemberService;
+import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.member.service.MemberService;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

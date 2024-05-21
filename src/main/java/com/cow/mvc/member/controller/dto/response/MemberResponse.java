@@ -1,9 +1,9 @@
-package com.cow.mvc.member.controller.dto.response;
+package com.cow.cow_mvc_practice.member.controller.dto.response;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cow.mvc.member.entity.Member;
+import com.cow.cow_mvc_practice.member.entity.Member;
 
 import lombok.Builder;
 import lombok.Getter;
