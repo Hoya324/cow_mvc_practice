@@ -11,15 +11,15 @@ public class MemberResponse {
 	private final String name;
 
 	@Builder
-	private MemberResponse(final Long id, final String name) {
+	public MemberResponse(final Long id, final String name) {
 		this.id = id;
 		this.name = name;
 	}
 
 	public static MemberResponse from(final Member member) {
 		return MemberResponse.builder()
-			.id(member.getId())
-			.name(member.getName())
-			.build();
+				.id(member.getId())
+				.name(member.getName())
+				.build();
 	}
 }

@@ -1,6 +1,7 @@
 package com.cow.cow_mvc_practice.member.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -57,5 +58,14 @@ public class MemberServiceImpl implements MemberService {
 		return members.stream()
 			.map(MemberResponse::from)
 			.collect(Collectors.toList());
+	}
+	@Override
+	@Transactional
+	public MemberResponse updateMemberName(Long memberId, MemberRequest memberRequest) {
+		Member member = memberRepository.findById(memberId)
+				.orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + memberId));
+		member.changeName(memberRequest.getName());
+		memberRepository.save(member);
+		return new MemberResponse(member.getId(), member.getName());
 	}
 }

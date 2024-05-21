@@ -2,13 +2,7 @@ package com.cow.cow_mvc_practice.member.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
@@ -57,5 +51,9 @@ public class MemberController {
 	public List<MemberResponse> findMembers() {
 		return memberService.findAll();
 	}
+	@PutMapping("/{memberId}")
+	public MemberResponse updateMember(@PathVariable Long memberId, @RequestBody MemberRequest memberRequest) {
+		return memberService.updateMemberName(memberId, memberRequest);
+    }
 }
 
