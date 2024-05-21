@@ -14,7 +14,6 @@ public class PostResponse {
     private final Long postId;
     private final String title;
     private final String content;
-    private final Time timeStamp;
 
     @Builder // 어느 필드에 어떤 값을 채워야 할지 명확하게 정하여 생성 시점에 값을 채워준다.
     private PostResponse(final Long postId, final String title, final String content, final String memberName, final Time timeStamp) {
@@ -22,7 +21,6 @@ public class PostResponse {
         this.title = title;
         this.content = content;
         this.memberName = memberName;
-        this.timeStamp = timeStamp;
     }
 
     public static PostResponse from(final Post post) {
@@ -31,7 +29,6 @@ public class PostResponse {
                 .postId(post.getId()) // builder 선언을 하였기에 사용 가능
                 .title(post.getTitle())
                 .content(post.getContent())
-                .timeStamp(post.getTimeStamp())
                 .build(); // builder 선언을 하였기에 사용 가능
     }
 }

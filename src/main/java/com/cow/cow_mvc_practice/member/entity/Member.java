@@ -1,5 +1,6 @@
 package com.cow.cow_mvc_practice.member.entity;
 
+import com.cow.cow_mvc_practice.comment.entity.Comment;
 import com.cow.cow_mvc_practice.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,9 @@ public class Member {
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL) // 이 Table 1 : 관계 테이블 Many
 	private final List<Post> posts = new ArrayList<>();
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL) // 이 Table 1 : 관계 테이블 Many
+	private final List<Comment> comments = new ArrayList<>();
 
 	@Builder // 어느 필드에 어떤 값을 채워야 할지 명확하게 정하여 생성 시점에 값을 채워준다.
 	private Member(final Long id, final String name) {

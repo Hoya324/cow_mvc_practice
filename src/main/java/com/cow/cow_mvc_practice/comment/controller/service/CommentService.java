@@ -1,14 +1,14 @@
 package com.cow.cow_mvc_practice.comment.controller.service;
 
+import com.cow.cow_mvc_practice.comment.controller.dto.request.CommentDeleteRequest;
+import com.cow.cow_mvc_practice.comment.controller.dto.request.CommentRequest;
 import com.cow.cow_mvc_practice.comment.controller.dto.response.CommentResponse;
-import com.cow.cow_mvc_practice.comment.controller.repository.CommentJPARepository;
-import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.comment.entity.Comment;
 
 import java.util.List;
 
 public interface CommentService {
-    CommentResponse join(Long memberId, Long postId, String comment);
-    CommentResponse findOne(Long commentId);
-    List<CommentResponse> findAll();
-    void deleteComment(Long memberId);
+    CommentResponse create(CommentRequest commentRequest);
+
+    boolean delete(String name, String title, CommentDeleteRequest request);
 }
