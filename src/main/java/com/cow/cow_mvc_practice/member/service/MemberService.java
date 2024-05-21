@@ -10,7 +10,9 @@ import com.cow.cow_mvc_practice.member.entity.Member;
 public interface MemberService {
 
 	/* 기본 */
+
 	// void join(MemberRequest memberRequest);
+
 	// Member findOne(Long memberId);
 
 
