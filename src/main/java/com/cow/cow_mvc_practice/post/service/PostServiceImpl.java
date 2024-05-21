@@ -33,7 +33,7 @@ private final MemberJPARepository memberRepository;
     public PostResponse make(PostRequest postRequest) {
         System.out.println(postRequest );
         Member member = findMember(postRequest.getMemberId());
-        Post post = Post.of(postRequest.getTitle(), postRequest.getContent(), member);
+        Post post = Post.of(postRequest.getTitle(), postRequest.getContent(), member,postRequest.toEntity().getCreatedAt());
         postRepository.save(post);
         return PostResponse.from(post);
     }

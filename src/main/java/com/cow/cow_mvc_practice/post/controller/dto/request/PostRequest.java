@@ -4,6 +4,8 @@ import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.post.entity.Post;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class PostRequest {
 	Long memberId;
@@ -15,6 +17,7 @@ public class PostRequest {
 		return Post.builder()
 				.title(title)
 				.content(content)
+				.createdAt(LocalDateTime.now())
 				.build();
 	}
 
