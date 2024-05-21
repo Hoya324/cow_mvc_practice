@@ -21,15 +21,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
-
+	// id와 	name은 Member table의 칼, id는 PK이다
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "member_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키 생성을 DB에게 위임
+	@Column(name = "member_id") // 칼럼명 지정
 	private Long id;
 
 	private String name;
 
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	// 예로 들면 한명의 손님이 여러 개의 계좌를 가질 수 있다, 계좌 입장에서는 @ManyToOne
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL) // 양방향 매핑일 때 // 다른 table의 member컬럼과 매핑?
 	private final List<Post> posts = new ArrayList<>();
 
 	@Builder

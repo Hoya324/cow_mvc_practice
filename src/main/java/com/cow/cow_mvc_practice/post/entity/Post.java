@@ -39,7 +39,7 @@ public class Post {
 		this.member = member;
 	}
 
-	public static Post from(final String title, final String content, final Member member) {
+	public static Post from(final String title, final String content ,final Member member) {
 		return Post.builder()
 			.title(title)
 			.content(content)
