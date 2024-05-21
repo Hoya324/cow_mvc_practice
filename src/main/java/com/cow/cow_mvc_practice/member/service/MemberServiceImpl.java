@@ -3,13 +3,15 @@ package com.cow.cow_mvc_practice.member.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.cow.cow_mvc_practice.member.dto.request.CreateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.request.UpdateMemberRequest;
+import com.cow.cow_mvc_practice.member.dto.response.FoundMemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.UpdatedMemberResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
+import com.cow.cow_mvc_practice.member.dto.response.CreatedMemberResponse;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
-
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
@@ -18,44 +20,39 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
-	private final MemberJPARepository memberRepository;
-	// private final MemberRepository memberRepository;
+    private final MemberJPARepository memberRepository;
 
-	/* 기본 */
-	// @Override
-	// public void join(MemberRequest memberRequest) {
-	// 	Member member = Member.from(memberRequest.getId(), memberRequest.getName());
-	// 	memberRepository.save(member);
-	// }
-	//
-	// @Transactional(readOnly = true)
-	// @Override
-	// public Member findOne(Long memberId) {
-	// 	return memberRepository.findById(memberId)
-	// 		.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-	// }
+    @Override
+    public CreatedMemberResponse create(CreateMemberRequest createMemberRequest) {
+        Member member = createMemberRequest.toEntity();
+        memberRepository.save(member);
+        return CreatedMemberResponse.from(member);
+    }
 
-	/* MemberResponse dto 적용 */
-	@Override
-	public MemberResponse join(String name) {
-		Member member = Member.from(name);
-		memberRepository.save(member);
-		return MemberResponse.from(member);
-	}
+    @Transactional(readOnly = true)
+    @Override
+    public FoundMemberResponse find(Long memberId) {
+        Member member = findById(memberId);
+        return FoundMemberResponse.from(member);
+    }
 
-	@Transactional(readOnly = true)
-	@Override
-	public MemberResponse findOne(Long memberId) {
-		Member member = memberRepository.findById(memberId)
-			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-		return MemberResponse.from(member);
-	}
+    @Transactional(readOnly = true)
+    @Override
+    public List<FoundMemberResponse> findAll() {
+        List<Member> members = memberRepository.findAll();
+        return members.stream().map(FoundMemberResponse::from).collect(Collectors.toList());
+    }
 
-	@Override
-	public List<MemberResponse> findAll() {
-		List<Member> members = memberRepository.findAll();
-		return members.stream()
-			.map(MemberResponse::from)
-			.collect(Collectors.toList());
-	}
+    @Override
+    public UpdatedMemberResponse update(Long memberId, UpdateMemberRequest updateMemberRequest) {
+        Member member = findById(memberId);
+        member.updateName(updateMemberRequest.getName());
+        memberRepository.save(member);
+        return UpdatedMemberResponse.from(member);
+    }
+
+    private Member findById(Long memberId) {
+        return memberRepository.findById(memberId).
+                orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
+    }
 }
