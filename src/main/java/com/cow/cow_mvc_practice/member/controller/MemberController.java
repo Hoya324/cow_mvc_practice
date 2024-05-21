@@ -39,7 +39,7 @@ public class MemberController {
 
 	/* MemberResponse dto 적용 */
 	@PostMapping("/new")
-	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
+	public MemberResponse create(@RequestBody final MemberRequest memberRequest) { // 본문 요청 데이터를 이 메서드에 매핑
 		return memberService.join(memberRequest.getName());
 	}
 
