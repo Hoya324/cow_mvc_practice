@@ -2,6 +2,8 @@
 ## API 명세서
 https://documenter.getpostman.com/view/34788196/2sA3Qnhtt9
 
+## ERD
+![img.png](img.png)
 ## 📮 미션 제출 방법
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
     - 해당 리포지토리를 fork/clone
