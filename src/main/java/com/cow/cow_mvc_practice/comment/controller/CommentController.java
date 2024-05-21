@@ -25,7 +25,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @PostMapping("/api/comments")
+    @PostMapping("/comments")
     public ResponseEntity<Comment> Comment(@RequestBody CommentRequest request, Member member) {
         Comment savedComment = commentService.save(request, member.getId());
 
@@ -33,12 +33,12 @@ public class CommentController {
                     .body(savedComment);
     }
 
-    @GetMapping("/api/comments/{commentId}")
+    @GetMapping("/comments/{commentId}")
     public void findComment(@PathVariable long commentId) {
         Comment comment = commentService.findComment(commentId);
     }
 
-    @PutMapping("/api/comments/{commentId}")
+    @PutMapping("/comments/{commentId}")
     public ResponseEntity<Comment> updateComment(@PathVariable long id, @RequestBody UpdateCommentRequest request) {
         Comment updatedComment = commentService.update(id, request);
 

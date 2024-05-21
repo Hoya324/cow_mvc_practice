@@ -16,7 +16,7 @@ public class PostController {
 
     private final PostService postService;
 
-    @PostMapping("/api/posts")
+    @PostMapping("/posts")
     public ResponseEntity<Post> registerPost(@RequestBody PostRequest request, Member member) {
         Post savedPost = postService.save(request, member.getId());
 
@@ -24,14 +24,14 @@ public class PostController {
                 .body(savedPost);
     }
 
-    @GetMapping("/api/posts/{postId}")
+    @GetMapping("/posts/{postId}")
     public ResponseEntity<Post> findPost(@PathVariable long postId) {
         Post post = postService.findPost(postId);
         return ResponseEntity.ok()
                 .body(post);
     }
 
-    @PutMapping("/api/posts/{postId}")
+    @PutMapping("/posts/{postId}")
     public ResponseEntity<Post> updatePost(@PathVariable long postId, @RequestBody UpdatePostRequest request) {
         Post updatedPost = postService.update(postId, request);
         return ResponseEntity.ok()
