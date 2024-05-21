@@ -23,9 +23,7 @@ public class Post {
 	@Column(name = "post_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String title;
-
 	private String content;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -39,11 +37,17 @@ public class Post {
 		this.member = member;
 	}
 
-	public static Post from(final String title, final String content, final Member member) {
+	public static Post of(final String title, final String content, final Member member) {
 		return Post.builder()
 			.title(title)
 			.content(content)
 			.member(member)
 			.build();
+	}
+
+	public static Post from(String title) {
+		return Post.builder()
+            .title(title)
+            .build();
 	}
 }

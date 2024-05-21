@@ -18,8 +18,8 @@ public class MemberResponse {
 
 	public static MemberResponse from(final Member member) {
 		return MemberResponse.builder()
-			.id(member.getId())
-			.name(member.getName())
-			.build();
+				.id(member.getId())
+				.name(member.getName())
+				.build();
 	}
 }
