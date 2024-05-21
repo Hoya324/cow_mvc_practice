@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cow.cow_mvc_practice.member.entity.Member;
 
-@Repository
+@Repository // DAO class에서 쓰인다 // DataBase에 접근하는 method를 가지고 있는 Class에서 쓰인다.
 public class MemberRepositoryImpl implements MemberRepository {
 	/**
 	 * 원래라면 HashMap이 아닌, concurrentHashMap이 적합함. HashMap은 멀티 쓰레드 환경에서 사용할 수 없기 때문.(동시성 이슈)
@@ -31,4 +31,5 @@ public class MemberRepositoryImpl implements MemberRepository {
 	public Optional<List<Member>> findAll() {
 		return Optional.of((List<Member>)store.values());
 	}
+
 }
