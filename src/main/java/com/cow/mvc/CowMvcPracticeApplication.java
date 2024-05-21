@@ -1,4 +1,4 @@
-package com.cow.cow_mvc_practice;
+package com.cow.mvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
