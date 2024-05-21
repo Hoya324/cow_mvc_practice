@@ -7,15 +7,11 @@ import lombok.Getter;
 @Getter
 public class CommentResponse {
 
-    private final String memberName;
     private final String comment;
-    private final String postTitle;
 
     @Builder
-    private CommentResponse(String memberName, final String comment, String postTitle) {
-        this.memberName = memberName;
+    private CommentResponse(final String comment) {
         this.comment = comment;
-        this.postTitle = postTitle;
     }
 
     public static CommentResponse from(final Comment comment) {

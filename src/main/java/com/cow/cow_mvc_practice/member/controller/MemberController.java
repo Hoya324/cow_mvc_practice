@@ -46,8 +46,8 @@ public class MemberController {
 	}
 
 	@DeleteMapping("/delete")
-	public void deleteMember(@RequestParam final Long memberId) {
-		memberService.deleteMember(memberId);
+	public void deleteMember(@RequestParam final String memberName) {
+		memberService.deleteMember(memberName);
 	}
 
 	@GetMapping("/comments")

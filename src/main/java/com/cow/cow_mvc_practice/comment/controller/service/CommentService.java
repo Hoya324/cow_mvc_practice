@@ -8,7 +8,8 @@ import com.cow.cow_mvc_practice.comment.entity.Comment;
 import java.util.List;
 
 public interface CommentService {
+
     CommentResponse create(CommentRequest commentRequest);
 
-    boolean delete(String name, String title, CommentDeleteRequest request);
+    void delete(CommentDeleteRequest request);
 }

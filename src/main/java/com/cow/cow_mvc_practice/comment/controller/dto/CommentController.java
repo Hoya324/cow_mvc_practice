@@ -20,7 +20,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/deleteIn")
-    public boolean deleteComments(@RequestParam String name, @RequestParam String title, @RequestBody CommentDeleteRequest commentDeleteRequest) {
-        return commentService.delete(name, title, commentDeleteRequest);
+    public void deleteComments(@RequestBody CommentDeleteRequest commentDeleteRequest) {
+        commentService.delete(commentDeleteRequest);
     }
 }

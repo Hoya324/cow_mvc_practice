@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface PostJPARepository extends JpaRepository<Post, Long> {
 
     Optional<Post> findByTitle(String title);
+
+    void deleteByTitle(String title);
 }

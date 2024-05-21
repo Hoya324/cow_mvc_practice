@@ -1,6 +1,7 @@
 package com.cow.cow_mvc_practice.post.service;
 
 import com.cow.cow_mvc_practice.post.controller.dto.request.PostRequest;
+import com.cow.cow_mvc_practice.post.controller.dto.response.PostAmountResponse;
 import com.cow.cow_mvc_practice.post.controller.dto.response.PostCommentsResponse;
 import com.cow.cow_mvc_practice.post.controller.dto.response.PostResponse;
 
@@ -10,13 +11,10 @@ public interface PostService {
 
     PostResponse create(String memberName, PostRequest postRequest);
 
-    PostResponse findOne(String postTitle);
+    PostAmountResponse findOne(String postTitle);
 
-    List<PostResponse> findAll(Long memberId);
-
-    void deletePost(Long memberId, String content);
+    void deletePost(String title);
 
     PostCommentsResponse getPostComments(String title);
 
-    int getCommentsAmount(String postTitle);
 }

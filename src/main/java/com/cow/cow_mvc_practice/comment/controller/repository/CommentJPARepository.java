@@ -10,4 +10,7 @@ import java.util.Optional;
 public interface CommentJPARepository extends JpaRepository<Comment, Long> {
 
     Optional<Comment> findByMemberNameAndPostTitleAndComment(String memberName, String postTitle, String comment);
+
+    void deleteById(Long id);
+
 }

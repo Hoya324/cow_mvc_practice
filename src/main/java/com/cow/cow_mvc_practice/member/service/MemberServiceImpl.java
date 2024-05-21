@@ -78,8 +78,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void deleteMember(Long memberId) {
-		memberRepository.deleteById(memberId);
+	public void deleteMember(String memberName) {
+		memberRepository.deleteByName(memberName);
 	}
 
 	@Transactional(readOnly = true) // ReadOnly -> 읽기 전용

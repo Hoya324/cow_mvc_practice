@@ -4,6 +4,7 @@ import com.cow.cow_mvc_practice.comment.entity.Comment;
 import com.cow.cow_mvc_practice.member.entity.Member;
 import com.cow.cow_mvc_practice.member.repository.MemberJPARepository;
 import com.cow.cow_mvc_practice.post.controller.dto.request.PostRequest;
+import com.cow.cow_mvc_practice.post.controller.dto.response.PostAmountResponse;
 import com.cow.cow_mvc_practice.post.controller.dto.response.PostCommentsResponse;
 import com.cow.cow_mvc_practice.post.controller.dto.response.PostResponse;
 import com.cow.cow_mvc_practice.post.entity.Post;
@@ -37,21 +38,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostResponse findOne(String postTitle) {
+    public PostAmountResponse findOne(String postTitle) {
         Post post = postRepository.findByTitle(postTitle)
                 .orElseThrow(() -> new EntityNotFoundException("[Error] 게시물을 찾을 수 없습니다."));
 
-        return PostResponse.from(post);
+        int commentAmount = getCommentsAmount(post);
+        return PostAmountResponse.from(post, commentAmount);
     }
 
     @Override
-    public List<PostResponse> findAll(Long memberId) {
-        return null;
-    }
-
-    @Override
-    public void deletePost(Long memberId, String content) {
-
+    public void deletePost(String title) {
+        postRepository.deleteByTitle(title);
     }
 
     @Override
@@ -66,11 +63,7 @@ public class PostServiceImpl implements PostService {
         return PostCommentsResponse.from(post, commentContents);
     }
 
-    @Override
-    public int getCommentsAmount(String postTitle) {
-        Post post = postRepository.findByTitle(postTitle)
-                .orElseThrow(() -> new EntityNotFoundException("[Error] 게시물을 찾을 수 없습니다."));
-
+    private int getCommentsAmount(Post post) {
         List<String> commentContents = post.getComments().stream()
                 .map(Comment::getComment)  // 댓글 내용만 추출
                 .toList();

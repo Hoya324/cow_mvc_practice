@@ -1,17 +1,17 @@
 package com.cow.cow_mvc_practice.comment.controller.dto.request;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class CommentDeleteRequest {
 
-    String content;
+    String name;
+    String title;
+    String comment;
 
-    @Builder
-    public CommentDeleteRequest(String content) {
-        this.content = content;
+    public CommentDeleteRequest(String name, String title, String comment) {
+        this.name = name;
+        this.title = title;
+        this.comment = comment;
     }
-
 }

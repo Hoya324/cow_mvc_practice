@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface MemberJPARepository extends JpaRepository<Member, Long> {
     Optional<Member> findByName(String name);
+
+    void deleteByName(String memberName);
 }

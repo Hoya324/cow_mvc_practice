@@ -38,19 +38,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public boolean delete(String name, String title, CommentDeleteRequest request) {
-        Member member = memberRepository.findByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-
-        Post post = postRepository.findByTitle(title)
-                .orElseThrow(() -> new EntityNotFoundException("[Error] 게시글을 찾을 수 없습니다."));
-
-        Comment comment = commentRepository.findByMemberNameAndPostTitleAndComment(member.getName(), post.getTitle(), request.getContent())
+    public void delete(CommentDeleteRequest request) {
+        Comment comment = commentRepository.findByMemberNameAndPostTitleAndComment(request.getName(), request.getTitle(), request.getComment())
                 .orElseThrow(() -> new EntityNotFoundException("[Error] 댓글을 찾을 수 없습니다."));
 
-        commentRepository.delete(comment);
-
-        return true;
+        commentRepository.deleteById(comment.getId());
     }
-
 }

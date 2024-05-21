@@ -22,7 +22,7 @@ public interface MemberService {
 
 	MemberResponse updateMemberInfo(UpdateMemberRequest updateMemberRequest);
 
-	void deleteMember(Long memberId);
+	void deleteMember(String memberName);
 
 	MemberCommentsResponse getMemberComments(String name);
 }
