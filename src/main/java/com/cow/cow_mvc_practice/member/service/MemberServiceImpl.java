@@ -66,4 +66,13 @@ public class MemberServiceImpl implements MemberService {
 		member.updateMemberName(name);
 		return MemberResponse.from(member);
 	}
+
+	@Override
+	public MemberResponse updateImageById(Long memberId, String profileImage) {
+		Member member = memberRepository.findById(memberId)
+			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
+		profileImage = Optional.ofNullable(profileImage).orElseThrow(IllegalArgumentException::new);
+		member.updateProfileImage(profileImage);
+		return MemberResponse.from(member);
+	}
 }

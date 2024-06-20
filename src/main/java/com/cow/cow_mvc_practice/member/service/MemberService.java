@@ -18,4 +18,6 @@ public interface MemberService {
 	ResponseEntity<Void> delete(Long memberId);
 
 	MemberResponse updateById(Long memberId, UpdateMemberRequest updateMemberRequest);
+
+	MemberResponse updateImageById(Long memberId, String profileImage);
 }

@@ -1,5 +1,6 @@
 package com.cow.cow_mvc_practice.member.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cow.cow_mvc_practice.Image.service.ImageUploadService;
 import com.cow.cow_mvc_practice.member.controller.dto.request.MemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberRequest;
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
@@ -28,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
+	private final ImageUploadService imageUploadService;
 
 	@PostMapping("/new")
 	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
@@ -53,6 +57,13 @@ public class MemberController {
 	public MemberResponse update(@PathVariable final Long memberId,
 		@RequestBody final UpdateMemberRequest updateMemberRequest) {
 		return memberService.updateById(memberId, updateMemberRequest);
+	}
+
+	@PatchMapping(value = "/{memberId}/image")
+	public MemberResponse updateProfileImage(@PathVariable final Long memberId,
+		@RequestParam("image") MultipartFile multipartFile) throws IOException {
+		String profileImage = imageUploadService.upload(multipartFile);
+		return memberService.updateImageById(memberId, profileImage);
 	}
 
 	@DeleteMapping("/{memberId}")

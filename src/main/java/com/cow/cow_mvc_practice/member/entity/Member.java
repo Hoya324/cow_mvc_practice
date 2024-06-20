@@ -27,6 +27,7 @@ public class Member {
 	@Column(name = "member_id")
 	private Long id;
 	private String name;
+	private String profileImage; // URL
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private final List<Post> posts = new ArrayList<>();
@@ -38,6 +39,7 @@ public class Member {
 	private Member(final Long id, final String name) {
 		this.id = id;
 		this.name = name;
+		this.profileImage = "https://mycowpracticebucket.s3.ap-northeast-2.amazonaws.com/anonymous.png";
 	}
 
 	public static Member from(String name) {
@@ -48,5 +50,9 @@ public class Member {
 
 	public void updateMemberName(String name) {
 		this.name = name;
+	}
+
+	public void updateProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 }

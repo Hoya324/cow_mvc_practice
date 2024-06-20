@@ -12,12 +12,14 @@ import lombok.Getter;
 public class MemberResponse {
 	private final Long id;
 	private final String name;
+	private final String profileImage;
 	private final List<String> posts;
 
 	@Builder
-	private MemberResponse(final Long id, final String name, final List<String> posts) {
+	private MemberResponse(final Long id, final String name, final String profileImage, final List<String> posts) {
 		this.id = id;
 		this.name = name;
+		this.profileImage = profileImage;
 		this.posts = posts;
 	}
 
@@ -27,6 +29,7 @@ public class MemberResponse {
 		return MemberResponse.builder()
 			.id(member.getId())
 			.name(member.getName())
+			.profileImage(member.getProfileImage())
 			.posts(posts)
 			.build();
 	}

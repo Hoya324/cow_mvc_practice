@@ -1,6 +1,8 @@
 spring:
   application:
     name: cow_mvc_practice
+  profiles:
+    include: aws
   jpa:
     open-in-view: true
     hibernate:
