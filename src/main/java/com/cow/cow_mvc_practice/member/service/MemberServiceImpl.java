@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,27 +26,34 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberJPARepository memberRepository;
 
 	@Override
-	public MemberResponse join(MemberRequest memberRequest) {
+	public ResponseEntity<MemberResponse> join(MemberRequest memberRequest) {
 		Member member = memberRequest.toEntity();
 		memberRepository.save(member);
-		return MemberResponse.from(member);
+		return ResponseEntity.status(HttpStatus.CREATED)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(MemberResponse.from(member));
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public MemberResponse findOne(Long memberId) {
+	public ResponseEntity<MemberResponse> findOne(Long memberId) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-		return MemberResponse.from(member);
+		return ResponseEntity.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(MemberResponse.from(member));
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<MemberResponse> findAll() {
+	public ResponseEntity<List<MemberResponse>> findAll() {
 		List<Member> members = memberRepository.findAll();
-		return members.stream()
+		List<MemberResponse> memberResponses = members.stream()
 			.map(MemberResponse::from)
 			.collect(Collectors.toList());
+		return ResponseEntity.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(memberResponses);
 	}
 
 	@Override
@@ -55,24 +63,28 @@ public class MemberServiceImpl implements MemberService {
 			throw new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다.");
 		}
 		memberRepository.deleteById(memberId);
-		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 	@Override
-	public MemberResponse updateById(Long memberId, UpdateMemberRequest updateMemberRequest) {
+	public ResponseEntity<MemberResponse> updateById(Long memberId, UpdateMemberRequest updateMemberRequest) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
 		String name = Optional.ofNullable(updateMemberRequest.getName()).orElse(member.getName());
 		member.updateMemberName(name);
-		return MemberResponse.from(member);
+		return ResponseEntity.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(MemberResponse.from(member));
 	}
 
 	@Override
-	public MemberResponse updateImageById(Long memberId, String profileImage) {
+	public ResponseEntity<MemberResponse> updateImageById(Long memberId, String profileImage) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
 		profileImage = Optional.ofNullable(profileImage).orElseThrow(IllegalArgumentException::new);
 		member.updateProfileImage(profileImage);
-		return MemberResponse.from(member);
+		return ResponseEntity.status(HttpStatus.OK)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(MemberResponse.from(member));
 	}
 }

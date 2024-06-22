@@ -9,15 +9,15 @@ import com.cow.cow_mvc_practice.member.controller.dto.request.UpdateMemberReques
 import com.cow.cow_mvc_practice.member.controller.dto.response.MemberResponse;
 
 public interface MemberService {
-	MemberResponse findOne(Long memberId);
+	ResponseEntity<MemberResponse> findOne(Long memberId);
 
-	MemberResponse join(MemberRequest memberRequest);
+	ResponseEntity<MemberResponse> join(MemberRequest memberRequest);
 
-	List<MemberResponse> findAll();
+	ResponseEntity<List<MemberResponse>> findAll();
 
 	ResponseEntity<Void> delete(Long memberId);
 
-	MemberResponse updateById(Long memberId, UpdateMemberRequest updateMemberRequest);
+	ResponseEntity<MemberResponse> updateById(Long memberId, UpdateMemberRequest updateMemberRequest);
 
-	MemberResponse updateImageById(Long memberId, String profileImage);
+	ResponseEntity<MemberResponse> updateImageById(Long memberId, String profileImage);
 }

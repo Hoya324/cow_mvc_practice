@@ -44,11 +44,11 @@ public class MemberController {
 	@PostMapping("/new")
 	@Operation(summary = "등록", description = "신규 회원 등록")
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "200", description = "등록 성공",
+		@ApiResponse(responseCode = "201", description = "등록 성공",
 			content = {@Content(schema = @Schema(implementation = MemberResponse.class))}),
 		@ApiResponse(responseCode = "400", description = "잘못된 요청")
 	})
-	public MemberResponse create(@RequestBody final MemberRequest memberRequest) {
+	public ResponseEntity<MemberResponse> create(@RequestBody final MemberRequest memberRequest) {
 		return memberService.join(memberRequest);
 	}
 
@@ -60,7 +60,7 @@ public class MemberController {
 		@ApiResponse(responseCode = "404", description = "존재하지 않는 회원",
 			content = {@Content(schema = @Schema(hidden = true))})
 	})
-	public MemberResponse findMember(@PathVariable final Long memberId) {
+	public ResponseEntity<MemberResponse> findMember(@PathVariable final Long memberId) {
 		return memberService.findOne(memberId);
 	}
 
@@ -72,7 +72,7 @@ public class MemberController {
 		@ApiResponse(responseCode = "404", description = "존재하지 않는 회원",
 			content = {@Content(schema = @Schema(hidden = true))})
 	})
-	public MemberResponse findMemberQuery(@RequestParam("id") final Long memberId) {
+	public ResponseEntity<MemberResponse> findMemberQuery(@RequestParam("id") final Long memberId) {
 		return memberService.findOne(memberId);
 	}
 
@@ -82,7 +82,7 @@ public class MemberController {
 		@ApiResponse(responseCode = "200", description = "조회 성공",
 			content = {@Content(schema = @Schema(implementation = MemberResponse.class))})
 	})
-	public List<MemberResponse> findMembers() {
+	public ResponseEntity<List<MemberResponse>> findMembers() {
 		return memberService.findAll();
 	}
 
@@ -94,7 +94,7 @@ public class MemberController {
 		@ApiResponse(responseCode = "404", description = "존재하지 않는 회원",
 			content = {@Content(schema = @Schema(hidden = true))})
 	})
-	public MemberResponse update(@PathVariable final Long memberId,
+	public ResponseEntity<MemberResponse> update(@PathVariable final Long memberId,
 		@RequestBody final UpdateMemberRequest updateMemberRequest) {
 		return memberService.updateById(memberId, updateMemberRequest);
 	}
@@ -107,7 +107,7 @@ public class MemberController {
 		@ApiResponse(responseCode = "404", description = "존재하지 않는 회원",
 			content = {@Content(schema = @Schema(hidden = true))})
 	})
-	public MemberResponse updateProfileImage(@PathVariable final Long memberId,
+	public ResponseEntity<MemberResponse> updateProfileImage(@PathVariable final Long memberId,
 		@RequestParam("image") MultipartFile multipartFile) throws IOException {
 		String profileImage = imageUploadService.upload(multipartFile);
 		return memberService.updateImageById(memberId, profileImage);
