@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +32,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "Member", description = "회원 관련 API")
 @RestController
+@Tag(name = "Member", description = "회원 관련 API")
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
@@ -48,7 +50,7 @@ public class MemberController {
 			content = {@Content(schema = @Schema(implementation = MemberResponse.class))}),
 		@ApiResponse(responseCode = "400", description = "잘못된 요청")
 	})
-	public ResponseEntity<MemberResponse> create(@RequestBody final MemberRequest memberRequest) {
+	public ResponseEntity<MemberResponse> create(@Valid @RequestBody final MemberRequest memberRequest) {
 		return memberService.join(memberRequest);
 	}
 
@@ -95,7 +97,7 @@ public class MemberController {
 			content = {@Content(schema = @Schema(hidden = true))})
 	})
 	public ResponseEntity<MemberResponse> update(@PathVariable final Long memberId,
-		@RequestBody final UpdateMemberRequest updateMemberRequest) {
+		@Valid @RequestBody final UpdateMemberRequest updateMemberRequest) {
 		return memberService.updateById(memberId, updateMemberRequest);
 	}
 
@@ -127,7 +129,13 @@ public class MemberController {
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<String> handleNoSuchElementFoundException(EntityNotFoundException exception) {
+	public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException exception) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
 	}
 }

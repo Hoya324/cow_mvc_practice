@@ -28,10 +28,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ResponseEntity<MemberResponse> join(MemberRequest memberRequest) {
 		Member member = memberRequest.toEntity();
-		memberRepository.save(member);
+		Member savedMember = memberRepository.save(member);
 		return ResponseEntity.status(HttpStatus.CREATED)
 			.contentType(MediaType.APPLICATION_JSON)
-			.body(MemberResponse.from(member));
+			.body(MemberResponse.from(savedMember));
 	}
 
 	@Transactional(readOnly = true)
@@ -70,8 +70,7 @@ public class MemberServiceImpl implements MemberService {
 	public ResponseEntity<MemberResponse> updateById(Long memberId, UpdateMemberRequest updateMemberRequest) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new EntityNotFoundException("[Error] 사용자를 찾을 수 없습니다."));
-		String name = Optional.ofNullable(updateMemberRequest.getName()).orElse(member.getName());
-		member.updateMemberName(name);
+		member.updateMemberName(updateMemberRequest.getName());
 		return ResponseEntity.status(HttpStatus.OK)
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(MemberResponse.from(member));
